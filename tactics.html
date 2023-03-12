@@ -51,8 +51,8 @@
                                 <br><h3>Tools and Technologies Used:</h3>
                                 <li>Unity Game Engine</li>
                                 <li>C#</li>
-                                <br><h3>Demonstration video (Last Updated 2-20-2023)</h3>
-                                <iframe width="700" height="500" src="https://www.youtube.com/embed/x_5to2St3oA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <br><h3>Demonstration video (Last Updated 3-11-2023)</h3>
+                                <iframe width="700" height="500" src="https://www.youtube.com/embed/MB-3bnt6GO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                 <br><br>
                                 <h2>From Conception to current state (longer read):</h2>
                                 <p>Here is another one of my passion-projects in progress I'm working on in my spare time!</p>
@@ -229,7 +229,64 @@
                                 <p>Update 2-23-23:</p>
                                 <li>Major updates to the board!!! Players can now press the ‘Undo’ Button to undo their recent purchases which will then refund the appropriate points and free up that board space to be used again!!!! Thank you to the playtesters for suggesting this!</li>
                                 <br>
-                                <p>That's all the updates for now! Thank you for checking out TableTactics, and for following along with me on this journey. Are you interested in getting involved in play testing? Contact me via my discord Mnew#0748 !!</p>
+                                <p>Things added from 2-23 until 3-11</p>
+                                <li>Added feedback 'clicking' noises to every single UI in the game</li>
+                                <li>Removed the 'takeDamage' animation from all units in the game</li>
+                                <li>Added feedback noise when players forget to choose a spot or a character to spawn. This also applies to when players have insufficient funds for a unit</li>
+                                <li>Added an entire experience system to the game, with a rewards system sprinkled in, which features things such as unlocking a brand new unit that shakes up the meta at level 5!</li>
+                                <li>Experience points are passively earned for beating levels, failing levels, or beating levels you've already beaten. Points obviously adjust for each of these conditions.</li>
+                                <li>Crafted an entire storyline for the game! Details coming soon!</li>
+                                <li>Added an entire 'relic' system to the game, which helps with replayability and fun randomess that isn't frustrating for the player. This feature of course can be turned on and off. Keep in mind these relics are randomized! So each playthrough will be different relics offered to you!</li>
+                                <li>Added a HARDCORE MODE! In this mode, if you die once your save gets deleted and you must start over again! Only for the most hardcore players! (Can be turned on or off of course)</li>
+                                <p>Here is some of the brainstorming I did, followed by the final products.</p>
+                                <p>Pop up/unlock screen draft:</p>
+                                <a class="image fit"><img src="images/Unit Unlock popup draft.png" alt="" /></a>
+                                <p>Unlock/Choice screen draft for relic system:</p>
+                                <a class="image fit"><img src="images/Relic Unlock popup draft.png" alt="" /></a>
+                                <p>draft ideas for relics:</p>
+                                <a class="image fit"><img src="images/relic brainstorm.png" alt="" /></a>
+                                <p>Here was my first try at implementing an unlock screen!</p>
+                                <a class="image fit"><img src="images/firstPopUpImplemented.png" alt="" /></a>
+                                <p>Here is the Experience Bar you will be greeted with before and after every fight!</p>
+                                <a class="image fit"><img src="images/final xp bar.png" alt="" /></a>
+                                <p>Now, onto the finale! Here are my final implementations of a few of the BIG things In this large update.</p>
+                                <p>My new unit description and unlock screen!</p>
+                                <a class="image fit"><img src="images/finalUnitPopup.png" alt="" /></a>
+                                <p>Some of the relics I came up with and added to the game:</p>
+                                <a class="image fit"><img src="images/finalrelic1.png" alt="" /></a>
+                                <a class="image fit"><img src="images/finalrelic2.png" alt="" /></a>
+                                <a class="image fit"><img src="images/finalrelic3.png" alt="" /></a>
+                                <p>Here is a full list of the relics I have planned and came up with:</p>
+                                <li>Frenzied Start: All of your units start with half hp but double attack speed</li>
+                                <li>Shields Up: Your units gain a 30 damage shield at the start of the round. Enemy units deal 30% increased damage.</li>
+                                <li>Fortune's Price: You will gain a random extra unit at the start of the battle, but enemies have 30% more health</li>
+                                <li>Extended Reach: Increases all of the players units attack ranges slightly.</li>
+                                <li>Phantom Army: This relic creates temporary copies of the player's units that fight alongside them, but also creates temporary copies of enemy units as well.</li>
+                                <li>Chaos Catalyst: All enemy units are randomized, you start with 30% extra points at the start of every round.</li>
+                                <li>Feline Fury: The enemy will spawn little cats that nip at your legs for small amounts of damage (new ones spawn every 5s and are untargetable.)</li>
+                                <li>Blistering Cold: A snowstorm starts at the beginning of each round. The storm damages all of your units on the board for some damage every second. +30% attack speed for your units.</li>
+                                <li>Toxic Empowerment: Poison that hurts all your units and turns them purple, every 2s it does damage to them but all your units do 2x damage</li>
+                                <li>Rapid Precision: All archers on your board gain 2x attack speed, but all enemy rabbits get quadruple health.</li>
+                                <li>Defiant Valor: Your Swordswoman(rally unit) gains 60% more health, but enemy archers have double damage.</li>
+                                <li>Vengeful Spirit: This relic allows the player's units to deal bonus damage to enemies when they have not been hit yet, but also makes enemy units receive this same bonus.</li>
+                                <li>Shadow Gambit: Your assassins start with a half full mana bar, enemy archers have double attack speed.</li>
+                                <li>Soul Siphon: This relic allows the player's units to steal health from enemies they attack, but also causes enemy units to steal health from the player's units when they attack.</li>
+                                <li>Arrowstorm Alchemy: This relic grants a temporary AOE damage effect to archer units for the player, but also causes enemy slime girl units' attacks to have a chance to create a clone of themselves to fight.</li>
+                                <li>Size Might Matter: All enemy units double in size and gain triple the health. Your units gain double attack damage.</li>
+                                <li>I Can Do It Better: All your units gain double attack speed. All enemy units gain triple attack speed.</li>
+                                <br>
+                                <p>Sorry for the text dump, but I had a lot of great ideas to share! Don't forget that the relics in my game are randomized! Each playthrough is different from the last! I also have abilities planned for the player to activate while in battle, but that's for another time!</p>
+                                <p>Here is a new video playthrough to help you visualize some of the changes. Soon I have a group of videos SPECIFICALLY showing off each relic I have added and its effects in battle! Enjoy the video!</p>
+                                <p>Timestamps of note are at 5 minutes and at 7:40. Those time stamps will show you the relic system and the new unit being unlocked!</p>
+                                <iframe width="700" height="500" src="https://www.youtube.com/embed/MB-3bnt6GO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <p>Relics currently in the game for playtesting:</p>
+                                <li>Fortunes Price fully added to the game</li>
+                                <li>Frenzied Start fully added to the game (THIS ONE IS SO FUN!!!!)</li>
+                                <li>Size Might Matter fully added to the game (wow this is hard)</li>
+                                <li>Rapid Precision fully added to the game(rabbit enjoyers rejoice!)</li>
+                                <li>Blistering Cold fully added to the game(winter is upon us!!)</li>
+                                <br>
+                                <p>That's all the updates for now! Thank you for checking out TableTactics, and for following along with me on this journey. Are you interested in getting involved in play testing? The game can be tested exactly as you see it right now! Contact me via my discord Mnew#0748 !!</p>
                             </header>
                         </article>
                 </div>
