@@ -92,33 +92,33 @@
                                 <h2>From Conception to current state (longer read):</h2>
                                 <p>Here is another one of my passion-projects in progress I'm working on in my spare time!</p>
                                 <p>The idea for this game is sort of difficult to describe, but essentially the idea of the game is for the player to strategize and field their units correctly in order to beat the enemies units. <br>Here is my initial idea for the game board. It will be a 4x6, with the board spaces being split into half of the enemies units and half of the players units.</p>
-                                <a class="image fit"><img src="images/draftboard.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/draftboard.png" alt="" /></a>
                                 <p>I then went ahead and began to plan the UI elements that the game would have. Starting with the UI that would accompany the game board.</p>
-                                <a class="image fit"><img src="images/gameUI.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/gameUI.png" alt="" /></a>
                                 <p>I was planning to have health bars, with little pictures for each unit that was currently on the field, so give the player all the current information of the battlefield. Before the fight starts, the player needs to pick units, so I designed that interface as well.</p>
-                                <a class="image fit"><img src="images/gameUI2.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/gameUI2.png" alt="" /></a>
                                 <p>Now that I had these sketches done, It was time to think about the campaign screen, as players would always arrive there before or after an encounter.</p>
-                                <a class="image fit"><img src="images/campaignscreen1.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/campaignscreen1.png" alt="" /></a>
                                 <p>My idea was to have some large pictures with a difficulty rating, a picture of the enemy for themeing, and their name. I also wanted some text to let the player know they could back out to the menu if needed.</p>
                                 <br><p>I was eager to jump in, so I chose a game engine I am very familiar with.... which was Unity.</p>
                                 <h3>The beginning of design!</h3>
                                 <p>I eagerly opened up a fresh Unity3D project, and got to work!</p>
                                 <p>Here's the game board! The red and blue pegs represent the places the player can select to spawn units.</p>
-                                <a class="image fit"><img src="images/design1.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design1.png" alt="" /></a>
                                 <p>Of course I needed the UI to accompany this scene, so I went ahead and made that too! At this point it was very basic, but it was a good start.</p>
-                                <a class="image fit"><img src="images/design 2.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design 2.png 2.png" alt="" /></a>
                                 <p>It was at this point I also began to work on allowing the player to select UI elements and places to spawn units. When the player chooses a spot, it's color changes to blue. If they hover a spot with their mouse, it turns green. Lastly, any UI element that is selected turns a gold-hue.</p>
                                 <p>Getting back on track, I went ahead and made a fast mock-up of my Menu screen. I plan to have a fight-in-progress going on with fancy camera angles eventually, but for now a simple background will do.</p>
-                                <a class="image fit"><img src="images/design3.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design3.png" alt="" /></a>
                                 <p>I'm not an artist, but I'm happy with this simple mock-up for now! Time for the campaign screen design! I'm really not focusing on the art at the beginning of the project, so this one is a placeholder as well.</p>
-                                <a class="image fit"><img src="images/design4.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design4.png" alt="" /></a>
                                 <p>Each one of the cards will be a different enemy the player must fight in succession, with multiple rounds of fighting to each of them. For now, the 'Choose' button brings you straight into the first fight.</p>
                                 <p>After fixing a pesky bug that allowed players to select multiple spots to spawn units at once, I then worked on Instantiation of units at those selected spots.</p>
                                 <p>For clarity, I changed the spots to spawn units at to white, and the temoorary unit that gets spawned to blue. Here's what that looked like:</p>
-                                <a class="image fit"><img src="images/design5.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design5.png" alt="" /></a>
                                 <p>You can see I played with UI a bit, as I moved the 'start fight' button to the right side of the screen and added a 'place unit' button as well. The player also needs to deselect a position if they change their mind, so I added that feature as well with a right click of the mouse. The three blue units were prefabs that got spawned upon clicking the spawn unit button.</p>
                                 <p>After clicking the 'start fight' button, the simulation begins and at this time only our 3 units go attack the other enemy units that are darker color.</p>
-                                <a class="image fit"><img src="images/design6.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design6.png" alt="" /></a>
                                 <p>I was happy with what I had so far, I just wanted to make some tweaks to colors and improve visibility for the player selecting positions to spawn their units. I also made some lighting changes and began to work on a better AI with actual animations.</p>
                                 <p>My first idea for a weak melee unit was a little bunny rabbit with a sword. Ideally, he should be very annyoing and hop around all the time to try to stay out of enemies attack ranges, but be super squishy/low health. So that's what I did my best to create.</p>
                                 <h3>My first unit!</h3>
@@ -134,9 +134,9 @@
                                 </div>
                                 <p>The AI will decide whether to strafe at random times, or move in close for an attack! It will always prioritize whatever enemy is closest to it.</p>
                                 <p>I fixed my lighting bug that was occuring, and added some texture to the background/floor and to the tabletop.</p>
-                                <a class="image fit"><img src="images/design7.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design7.png" alt="" /></a>
                                 <p>As you can see, the visibility of units, spaces, and overall look of things drastically improved.</p>
-                                <a class="image fit"><img src="images/design8.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/design8.png" alt="" /></a>
                                 <p>The next thing I had to do, was start to work on an enemy AI for my first unit and future units to fight. For now I adapted the bunny rabbit code, and made it work for enemy units as well.</p>
                                 <h3>Bunny fight!</h3>
                                 <div class="auto-resizable-iframe">
@@ -151,7 +151,7 @@
                                     </div>
                                 </div>
                                 <p>I have some small animation bugs, and the bunny only uses one attack, but now the units at least fight, and even have death animations! The bunny warpath begins!</p>
-                                <a class="image fit"><img src="images/warpath.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/warpath.png" alt="" /></a>
                                 <p>Now that I had an enemy to fight, I am beginning to design and add more units to fight against or play on your side.</p>
                                 <a class="image fit"><img src="images/addedUnits.jpg" alt="" /></a>
                                 <p>I added a slime girl who can perform basic attacks, but cannot strafe. I also added a harpy, who can strafe and has quite a long attack range. <br>Here is a sample of some of these units fighting:</p>
@@ -192,23 +192,23 @@
                                 <li>Added health bars, so that players can visually see damage being done and what units are fighting for their lives!</li>
                                 <li>I began to plan how I would implement unit abilities, and their mana bar that determines when to cast abilities</li>
                                 <p>Here is my amazing wireframe drawing detailing my plans.</p>
-                                <a class="image fit"><img src="images/ms paint health system.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/ms paint health system.png" alt="" /></a>
                                 <p>My idea for the mana bar was for units to earn their ability over time through participation in combat. Giving players room for strategies like backline mages that would continue to build mana from afar. It also helps with a rush of adrenaline as players can visually see when a unit is about to unleash their abilities!</p>
                                 <p>First Testing of health bars:</p>
-                                <a class="image fit"><img src="images/healthbar1.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/healthbar1.png" alt="" /></a>
                                 <p>What health bars look like when fully depleted or when damaged:</p>
-                                <a class="image fit"><img src="images/healthbar2.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/healthbar2.png" alt="" /></a>
                                 <p>Additonally, health bars will disappear when units die, so that fights are not cluttered with irrelevant information.</p>
                                 <p>As you can see from the screenshots above, I also implemented camera controls, circular travel around the table + up/down + zooming in/out.</p>
                                 <p>Update 1-9-23:</p>
                                 <p>Ran into significant bugs while trying to work on a new AI that improves animation realism....</p>
                                 <p>Ideas for tutorial: (each step is a different UI that appears only for that step and disappears after the requested action is completed)</p>
                                 <p>Here are the wireframes for my tutorial, that will introduce the main mechanics and gameplay loop of my game:</p>
-                                <a class="image fit"><img src="images/tutorial step 1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 2.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 3.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 4.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 5.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/tutorial step 1.png" alt="" /></a>
+                                <a class="image fit"><img src="images/tutorial step 2.png" alt="" /></a>
+                                <a class="image fit"><img src="images/tutorial step 3.png" alt="" /></a>
+                                <a class="image fit"><img src="images/tutorial step 4.png" alt="" /></a>
+                                <a class="image fit"><img src="images/tutorial step 5.png" alt="" /></a>
                                 <p>With these wireframes in mind, I setout to work on the tutorial.</p>
                                 <p>After completing the tutorial, I realize that I need an additonal tutorial that explains the campaign screen... For now I will put that off to work on other features.</p>
                                 <p>For the campaign tutorial screen I want to touch on:</p>
@@ -299,14 +299,14 @@
                                 <p><b>At this point you can see I've been consistently getting work done. In lieu of spamming you with updates until the 20th of March, I will just post some screenshots to help you visualize some of the changes.</b></p>
                                 <p>Some snapshots of visual updates to the game:</p>
                                 <p>Context: I added images of units with their point cost included in the corner so that I could update the UI that helps players spawn units.</p>
-                                <a class="image fit"><img src="images/newarchertxt.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/newbeartxt.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/newarchertxt.png" alt="" /></a>
+                                <a class="image fit"><img src="images/newbeartxt.png" alt="" /></a>
                                 <p>Here is what the UI looked like before the update, and after the update:</p>
-                                <a class="image"><img src="images/nonchangedui.jpg" alt="" /></a>
-                                <a class="image"><img src="images/UIchanges.jpg" alt="" /></a>
+                                <a class="image"><img src="images/nonchangedui.png" alt="" /></a>
+                                <a class="image"><img src="images/UIchanges.png" alt="" /></a>
                                 <p>If you've been paying attention, I also added a color pallet swap to green to match the nature levels of the game :).</p>
                                 <p><b>Tired of seeing the boring stuff? So am I. The following is my studio logo (made with canva)! Keep in mind I'm a one man show here so I made it a bit funny because why not.</b></p>
-                                <a class="image fit"><img src="images/StudioMnewPic.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/StudioMnewPic.png" alt="" /></a>
                                 <p><b>Showtime! Here is a demonstration playthrough of the game in its current state on 2-20-2023. This is what my first group of play testers are seeing.</b></p>
                                 <div class="auto-resizable-iframe">
                                     <div>
@@ -331,22 +331,22 @@
                                 <li>Added a HARDCORE MODE! In this mode, if you die once your save gets deleted and you must start over again! Only for the most hardcore players! (Can be turned on or off of course)</li>
                                 <p>Here is some of the brainstorming I did, followed by the final products.</p>
                                 <p>Pop up/unlock screen draft:</p>
-                                <a class="image fit"><img src="images/Unit Unlock popup draft.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/Unit Unlock popup draft.png" alt="" /></a>
                                 <p>Unlock/Choice screen draft for relic system:</p>
-                                <a class="image fit"><img src="images/Relic Unlock popup draft.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/Relic Unlock popup draft.png" alt="" /></a>
                                 <p>draft ideas for relics:</p>
-                                <a class="image fit"><img src="images/relic brainstorm.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/relic brainstorm.png" alt="" /></a>
                                 <p>Here was my first try at implementing an unlock screen!</p>
-                                <a class="image fit"><img src="images/firstPopUpImplemented.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/firstPopUpImplemented.png" alt="" /></a>
                                 <p>Here is the Experience Bar you will be greeted with before and after every fight!</p>
-                                <a class="image fit"><img src="images/final xp bar.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/final xp bar.png" alt="" /></a>
                                 <p>Now, onto the finale! Here are my final implementations of a few of the BIG things In this large update.</p>
                                 <p>My new unit description and unlock screen!</p>
-                                <a class="image fit"><img src="images/finalUnitPopup.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/finalUnitPopup.png" alt="" /></a>
                                 <p>Some of the relics I came up with and added to the game:</p>
-                                <a class="image fit"><img src="images/finalrelic1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/finalrelic2.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/finalrelic3.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/finalrelic1.png" alt="" /></a>
+                                <a class="image fit"><img src="images/finalrelic2.png" alt="" /></a>
+                                <a class="image fit"><img src="images/finalrelic3.png" alt="" /></a>
                                 <p>Here is a full list of the relics I have planned and came up with:</p>
                                 <li>Frenzied Start: All of your units start with half hp but double attack speed</li>
                                 <li>Shields Up: Your units gain a 30 damage shield at the start of the round. Enemy units deal 30% increased damage.</li>
@@ -430,10 +430,10 @@
                                 <br>
                                 <p>Here are some snapshots of these changes:</p>
                                 <p>Tooltip and UI changes:</p>
-                                <a class="image"><img src="images/firstTooltip1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/secondTooltip1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/ui tip change.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/changed bg on tutorial.jpg" alt="" /></a>
+                                <a class="image"><img src="images/firstTooltip1.png" alt="" /></a>
+                                <a class="image fit"><img src="images/secondTooltip1.png" alt="" /></a>
+                                <a class="image fit"><img src="images/ui tip change.png" alt="" /></a>
+                                <a class="image fit"><img src="images/changed bg on tutorial.jpg.png" alt="" /></a>
                                 <a class="image fit"><img src="images/characteframe1.jpg" alt="" /></a>
                                 <a class="image fit"><img src="images/characterframe2.jpg" alt="" /></a>
                                 <p>New explosion particles (much better than those big red boxes)</p>
@@ -443,9 +443,9 @@
                                     </div>
                                 </div>
                                 <p>Action shot of archer shooting arrow prefab!</p>
-                                <a class="image fit"><img src="images/archer action shot.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/archer action shot.png" alt="" /></a>
                                 <p>Latest Update Screenshots with Board Hazards!</p>
-                                <a class="image fit"><img src="images/board hazard tutorial img.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/board hazard tutorial img.png" alt="" /></a>
                                 <a class="image fit"><img src="images/zones causing chaos.jpg" alt="" /></a>
                                 <a class="image fit"><img src="images/another map buff pic.jpg" alt="" /></a>
                                 <a class="image fit"><img src="images/yet another map buff pic describing hint for assassin use.jpg" alt="" /></a>
@@ -466,7 +466,7 @@
                                 <li>Added damage and heal text pop ups to help players visualize what’s happening on the screen. Yellow text for regular damage, light red for high damage, and dark red for critical damage. Don't forget green text for healing!</li>
                                 <b>Snapshots:</b>
                                 <a class="image fit"><img src="images/knockback ragdoll.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/knockback ragdoll2.jpg" alt="" /></a>
+                                <a class="image fit"><img src="images/knockback ragdoll2.png" alt="" /></a>
                                 <b>Here is a short video demonstration of the game with damage popups:</b>
                                 <div class="auto-resizable-iframe">
                                   <div>
