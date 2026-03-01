@@ -1,134 +1,565 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Fateful Fragments — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+		:root {
+			--bg:        #0d0d0f;
+			--surface:   #141418;
+			--border:    #1f1f28;
+			--border-h:  #3a3a52;
+			--text:      #e2e0f0;
+			--muted:     #6b6880;
+			--accent:    #7f6af8;
+			--accent2:   #c084fc;
+			--glow:      rgba(127, 106, 248, 0.15);
+		}
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		html { scroll-behavior: smooth; }
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'Inter', sans-serif;
+			font-size: 15px;
+			line-height: 1.7;
+			overflow-x: hidden;
+		}
 
-            <!-- Main -->
-                <div id="main">
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+			pointer-events: none;
+			z-index: 0;
+			opacity: 0.5;
+		}
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>Fateful Fragments</a></h2>
-                                <a class="image fit"><img src="images/player selfie map 1 teaserWatermarked.png" alt="" /></a>
-                                <h3><a>Gameplay Trailer</a></h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/_bMrbQhzJ8g?si=RvqfbRtrbKO2Tj1o"></iframe>
-                                    </div>
-                                </div>
-                                <br>
-                                <h3><a>Full Playthrough</a></h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/jG7EcjRSMbI?si=uhLsKLP4vovsSBlU"></iframe>
-                                    </div>
-                                </div>
-                                <br><h2>Concise Summary:</h2>
-                                <h2>Concept and Inspiration:</h2>
-                                <p>After building a series of smaller games, I decided to step my game up and create an action RPG! I noticed there was a hole in the market where gacha games that are very popular often have okay combat but trivial bosses, and souls-like games had frustrating combat with highly engaging bosses. On top of this, the gacha games naturually come with predatory MTX shops, which I wanted to avoid to stand out. So I wanted a amalgamation of the two genres (soulslike and gacha) with my own touch added in.</p>
-                                <br><h3>Team and Team Size:</h3>
-                                <p>The team originally was myself for the first 5 months as I worked at my part time job. After leaving my job to pursue this game further I decided I wanted to contract out some work to indivuduals on an as-needed basis. The team consists of the following:</p>
-                                <li>Narrative Designer</li>
-                                <li>Composer and Sound Designer</li>
-                                <li>VFX Artist</li>
-                                <li>3D Environmental Artist and Animator</li>
-                                <li>3D Character Modeler</li>
-                                <li>2D Character Artist</li>
-                                <br><br>
-                                <h3>Main design goals:</h3>
-                                <li>Design a strong primary gameplay loop that is both intuitive and engaging</li>
-                                <li>Create an engaging combat system like elden ring, but without the restrictive design restricting players from canceling attacks etc.</li>
-                                <li>Design robust AI for both enemy bosses and companions that feel real and challenging</li>
-                                <li>Create a story that can encapsulate the overarching idea of a genshin-like anime stylized game</li>
-                                <li>Have multiple enemy types that teach mechanics of the boss before reaching the boss</li>
-                                <li>Have map design that satisfies players who love exploration, while also building suspense for the boss fight at the conclusion</li>
-                                <li>Design a system that supports companion rapport level and deeper player engagement with companions</li>
-                                <br><h3>Main Challenges Faced so Far:</h3>
-                                <li>Creating seamless transtions between animations and instant responsiveness as the player expects</li>
-                                <li>Designing challenging enemy bosses</li>
-                                <li>Creating unique environments and worlds that the player encounters throughout the game</li>
-                                <li>Balancing companion AI</li>
-                                <li>Designing realistic dialogue to support the companion system</li>
-                                <li>Improving Tutorial Information for accessibility</li>
-                                <li>Creating a cohesive art style across the game</li>
-                                <br><h3>Tools and Technologies Used:</h3>
-                                <li>Unity Game Engine</li>
-                                <li>C#</li>
-                                <li>Visual Studio Code</li>
-                                <li>Blender</li>
-                                <li>Dotween Framework</li>
-                                <br>
-                                <br><h2>Some screenshots:</h2>
-                                <a class="image fit"><img src="images/tutorialTeaserImgWatermarked.png" alt="" /></a>
-                                <a class="image fit"><img src="images/Yuki Dialogue teaser2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerGsSuperTeaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/boss1teaser3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/yuki dialogue teaser3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerGSSpecialNewPlayerModelTeaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerDialogueTeaser1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/boss3teaser2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerDialogueTeaser3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/puzzleBoss4Teaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerShadowMapTeaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/new wolf arena teaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/playerDialogueTeaser4.png" alt="" /></a>
-                                <a class="image fit"><img src="images/companionStaggerPic.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorialTeaserImg3RedoneWithNewWeapon.png" alt="" /></a>
-                                <a class="image fit"><img src="images/pull anim teaser pic tessa (1).png" alt="" /></a>
-                                <a class="image fit"><img src="images/luna teaser for itch page (1).png" alt="" /></a>
-                                <br><h2>See more screenshots or Try the free playtestable game out on Itch!</h2>
-                                <a href="https://mnew22.itch.io/fateful-fragments" target="_blank"><span class="label">Link: Itch.io, password: mnew</span></a>
-                                <br><br><h2>Or maybe watch the gameplay trailer!</h2>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/_bMrbQhzJ8g?si=RvqfbRtrbKO2Tj1o"></iframe>
-                                    </div>
-                                </div>
-                                <br><br><h3>Thanks for reading and checking out my game!</h3>
-                            </header>
-                        </article>
-                </div>
+		/* ── HEADER ── */
+		header {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 3rem;
+			padding: 2.2rem 3.5rem;
+			border-bottom: 1px solid var(--border);
+		}
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+		.logo {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: 1.15rem;
+			letter-spacing: -0.01em;
+			color: var(--text);
+			text-decoration: none;
+		}
 
-        </div>
+		.logo span { color: var(--accent); }
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+		nav { display: flex; align-items: center; gap: 2rem; }
+
+		nav a {
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			transition: color 0.2s;
+		}
+
+		nav a:hover { color: var(--text); }
+
+		.nav-icons { display: flex; gap: 1rem; }
+
+		.nav-icons a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			color: var(--muted);
+			text-decoration: none;
+			transition: border-color 0.2s, color 0.2s, background 0.2s;
+			font-size: 0.85rem;
+		}
+
+		.nav-icons a:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+			background: rgba(127,106,248,0.07);
+		}
+
+		/* ── LAYOUT ── */
+		.page {
+			position: relative;
+			z-index: 10;
+			max-width: 860px;
+			margin: 0 auto;
+			padding: 4rem 2rem 6rem;
+		}
+
+		/* ── HERO ── */
+		.project-hero {
+			margin-bottom: 3.5rem;
+			animation: fadeUp 0.5s ease both;
+		}
+
+		.project-eyebrow {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1rem;
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.project-eyebrow::before {
+			content: '';
+			display: block;
+			width: 28px;
+			height: 1px;
+			background: var(--accent);
+		}
+
+		.project-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: clamp(2.4rem, 5vw, 3.8rem);
+			letter-spacing: -0.03em;
+			line-height: 1.05;
+			color: var(--text);
+			margin-bottom: 1.2rem;
+		}
+
+		.project-tagline {
+			font-size: 1rem;
+			color: var(--muted);
+			max-width: 580px;
+			font-style: italic;
+		}
+
+		.pill-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin-top: 1.5rem;
+		}
+
+		.pill {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.65rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--muted);
+			background: var(--surface);
+			border: 1px solid var(--border);
+			padding: 0.25rem 0.65rem;
+			border-radius: 4px;
+		}
+
+		/* ── HERO IMAGE ── */
+		.hero-image {
+			width: 100%;
+			border-radius: 12px;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			margin-bottom: 3rem;
+			animation: fadeUp 0.5s ease both;
+			animation-delay: 0.1s;
+		}
+
+		.hero-image img {
+			width: 100%;
+			display: block;
+		}
+
+		/* ── VIDEO ── */
+		.video-section {
+			margin-bottom: 3rem;
+			animation: fadeUp 0.5s ease both;
+			animation-delay: 0.15s;
+		}
+
+		.video-label {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.68rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--muted);
+			margin-bottom: 0.75rem;
+		}
+
+		.video-wrap {
+			position: relative;
+			width: 100%;
+			padding-top: 56.25%;
+			border-radius: 10px;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			background: #000;
+			margin-bottom: 1.5rem;
+		}
+
+		.video-wrap iframe {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+
+		/* ── DIVIDER ── */
+		.divider {
+			display: flex;
+			align-items: center;
+			gap: 1.2rem;
+			margin: 3rem 0 2rem;
+		}
+
+		.divider h2 {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 0.68rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--muted);
+			white-space: nowrap;
+		}
+
+		.divider::after {
+			content: '';
+			flex: 1;
+			height: 1px;
+			background: var(--border);
+		}
+
+		/* ── SECTION CONTENT ── */
+		.section-content {
+			animation: fadeUp 0.5s ease both;
+		}
+
+		.section-content p {
+			color: #b8b4cc;
+			margin-bottom: 1rem;
+			font-size: 0.95rem;
+		}
+
+		/* ── SECTION HEADING ── */
+		.section-h3 {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 1.15rem;
+			color: var(--text);
+			margin-bottom: 0.75rem;
+			margin-top: 2rem;
+		}
+
+		/* ── LIST ── */
+		.styled-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.styled-list li {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			font-size: 0.9rem;
+			color: #b8b4cc;
+			line-height: 1.6;
+		}
+
+		.styled-list li::before {
+			content: '▸';
+			color: var(--accent);
+			font-size: 0.7rem;
+			margin-top: 0.3rem;
+			flex-shrink: 0;
+		}
+
+		/* ── TWO COL ── */
+		.two-col {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+
+		@media (max-width: 600px) {
+			.two-col { grid-template-columns: 1fr; }
+		}
+
+		/* ── SCREENSHOTS ── */
+		.screenshot-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1px;
+			background: var(--border);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			overflow: hidden;
+		}
+
+		.screenshot-grid img {
+			width: 100%;
+			display: block;
+			object-fit: cover;
+			aspect-ratio: 16/10;
+			transition: opacity 0.2s;
+		}
+
+		.screenshot-grid img:hover { opacity: 0.85; }
+
+		/* ── CTA ── */
+		.cta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-top: 3rem;
+			padding-top: 2.5rem;
+			border-top: 1px solid var(--border);
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.7rem 1.4rem;
+			border-radius: 8px;
+			font-family: 'DM Mono', monospace;
+			font-size: 0.75rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-decoration: none;
+			transition: all 0.2s;
+		}
+
+		.btn-primary {
+			background: var(--accent);
+			color: #fff;
+			border: 1px solid var(--accent);
+		}
+
+		.btn-primary:hover {
+			background: transparent;
+			color: var(--accent);
+		}
+
+		.btn-secondary {
+			background: transparent;
+			color: var(--muted);
+			border: 1px solid var(--border);
+		}
+
+		.btn-secondary:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+
+		/* ── FOOTER ── */
+		footer {
+			position: relative;
+			z-index: 10;
+			border-top: 1px solid var(--border);
+			padding: 1.5rem 3.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		footer p {
+			font-size: 0.72rem;
+			color: var(--muted);
+			font-family: 'DM Mono', monospace;
+		}
+
+		/* ── ANIMATION ── */
+		@keyframes fadeUp {
+			from { opacity: 0; transform: translateY(16px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		header { animation: fadeUp 0.5s ease both; }
+
+		@media (max-width: 768px) {
+			header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+			.page { padding: 2.5rem 1.25rem 5rem; }
+			.screenshot-grid { grid-template-columns: 1fr; }
+			footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+				</a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+				</a>
+			</div>
+		</nav>
+	</header>
+
+	<div class="page">
+
+		<!-- Project Hero -->
+		<div class="project-hero">
+			<div class="project-eyebrow">3D Action RPG · Unity · C#</div>
+			<h1 class="project-title">Fateful Fragments</h1>
+			<p class="project-tagline">A souls-like meets gacha RPG — challenging bosses, unlockable companions, and a world worth saving.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span>
+				<span class="pill">C#</span>
+				<span class="pill">Blender</span>
+				<span class="pill">DotTween</span>
+				<span class="pill">AI State Machines</span>
+				<span class="pill">Prototype</span>
+			</div>
+		</div>
+
+		<!-- Hero Image -->
+		<div class="hero-image">
+			<img src="images/player selfie map 1 teaserWatermarked.png" alt="Fateful Fragments screenshot" />
+		</div>
+
+		<!-- Videos -->
+		<div class="video-section">
+			<div class="video-label">Gameplay Trailer</div>
+			<div class="video-wrap">
+				<iframe allowfullscreen src="https://www.youtube.com/embed/_bMrbQhzJ8g?si=RvqfbRtrbKO2Tj1o"></iframe>
+			</div>
+			<div class="video-label">Full Playthrough</div>
+			<div class="video-wrap">
+				<iframe allowfullscreen src="https://www.youtube.com/embed/jG7EcjRSMbI?si=uhLsKLP4vovsSBlU"></iframe>
+			</div>
+		</div>
+
+		<!-- Concept -->
+		<div class="divider"><h2>Concept &amp; Inspiration</h2></div>
+		<div class="section-content">
+			<p>After building a series of smaller games, I wanted to step up and create a full action RPG. I noticed a gap in the market: gacha games are wildly popular but tend to have trivial bosses and predatory monetization, while souls-likes have deeply engaging boss design but restrictive, frustrating combat. I wanted to combine the best of both — challenging, responsive souls-like combat with a gacha-inspired companion and progression system, without any MTX.</p>
+		</div>
+
+		<!-- Team -->
+		<div class="divider"><h2>Team</h2></div>
+		<div class="section-content">
+			<p>I built the game solo for the first 5 months while working part-time. After leaving my job to pursue it full-time, I contracted specialists on an as-needed basis:</p>
+			<ul class="styled-list">
+				<li>Narrative Designer</li>
+				<li>Composer &amp; Sound Designer</li>
+				<li>VFX Artist</li>
+				<li>3D Environmental Artist &amp; Animator</li>
+				<li>3D Character Modeler</li>
+				<li>2D Character Artist</li>
+			</ul>
+		</div>
+
+		<!-- Goals + Challenges -->
+		<div class="divider"><h2>Design Goals &amp; Challenges</h2></div>
+		<div class="section-content">
+			<div class="two-col">
+				<div>
+					<h3 class="section-h3">Goals</h3>
+					<ul class="styled-list">
+						<li>Strong primary gameplay loop that is both intuitive and engaging</li>
+						<li>Elden Ring-inspired combat without restrictive attack canceling</li>
+						<li>Robust AI for enemy bosses and companion characters</li>
+						<li>Enemy types that teach boss mechanics before the boss encounter</li>
+						<li>Exploration-rewarding maps that build suspense toward the boss</li>
+						<li>Companion rapport and relationship progression system</li>
+						<li>Anime-stylized story that fits the gacha-inspired aesthetic</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="section-h3">Challenges</h3>
+					<ul class="styled-list">
+						<li>Seamless animation transitions with instant player responsiveness</li>
+						<li>Designing bosses that feel fair but genuinely difficult</li>
+						<li>Creating unique, varied environments across the game world</li>
+						<li>Balancing companion AI behavior</li>
+						<li>Writing realistic dialogue for the companion system</li>
+						<li>Improving tutorial accessibility without breaking immersion</li>
+						<li>Maintaining a cohesive art style across all assets</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Tools -->
+		<div class="divider"><h2>Tools &amp; Technologies</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Unity Game Engine</li>
+				<li>C#</li>
+				<li>Visual Studio Code</li>
+				<li>Blender</li>
+				<li>DOTween Framework</li>
+			</ul>
+		</div>
+
+		<!-- Screenshots -->
+		<div class="divider"><h2>Screenshots</h2></div>
+		<div class="screenshot-grid">
+			<img src="images/tutorialTeaserImgWatermarked.png" alt="" />
+			<img src="images/Yuki Dialogue teaser2.png" alt="" />
+			<img src="images/playerGsSuperTeaser.png" alt="" />
+			<img src="images/boss1teaser3.png" alt="" />
+			<img src="images/yuki dialogue teaser3.png" alt="" />
+			<img src="images/playerGSSpecialNewPlayerModelTeaser.png" alt="" />
+			<img src="images/playerDialogueTeaser1.png" alt="" />
+			<img src="images/boss3teaser2.png" alt="" />
+			<img src="images/playerDialogueTeaser3.png" alt="" />
+			<img src="images/puzzleBoss4Teaser.png" alt="" />
+			<img src="images/playerShadowMapTeaser.png" alt="" />
+			<img src="images/new wolf arena teaser.png" alt="" />
+			<img src="images/playerDialogueTeaser4.png" alt="" />
+			<img src="images/companionStaggerPic.png" alt="" />
+			<img src="images/tutorialTeaserImg3RedoneWithNewWeapon.png" alt="" />
+			<img src="images/pull anim teaser pic tessa (1).png" alt="" />
+			<img src="images/luna teaser for itch page (1).png" alt="" />
+		</div>
+
+		<!-- CTA -->
+		<div class="cta-row">
+			<a href="https://mnew22.itch.io/fateful-fragments" target="_blank" class="btn btn-primary">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+				Play on Itch.io — password: mnew
+			</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
 
 </body>
 </html>

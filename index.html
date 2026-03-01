@@ -1,188 +1,630 @@
 <!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Michael Newman — Portfolio</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+		:root {
+			--bg:        #0d0d0f;
+			--surface:   #141418;
+			--border:    #1f1f28;
+			--border-h:  #3a3a52;
+			--text:      #e2e0f0;
+			--muted:     #6b6880;
+			--accent:    #7f6af8;
+			--accent2:   #c084fc;
+			--glow:      rgba(127, 106, 248, 0.18);
+		}
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>Michaels<br />
-						Portfolio</h1>
-						<p>My goal is to craft great games and software that users love.</p>
-						<ul class="actions">
-							<li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-						</ul>
-					</div>
+		html { scroll-behavior: smooth; }
 
-				<!-- Header -->
-					<header id="header">
-						<a class="logo">Michael Newman</a>
-					</header>
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'DM Mono', monospace;
+			font-size: 14px;
+			min-height: 100vh;
+			overflow-x: hidden;
+		}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a>This is Michael</a></li>
-							<li><a href="generic.html">Contact Me</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-							<li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-						</ul>
-					</nav>
+		/* Subtle noise texture overlay */
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+			pointer-events: none;
+			z-index: 0;
+			opacity: 0.5;
+		}
 
-				<!-- Main -->
-					<div id="main">
+		/* ── HEADER ── */
+		header {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 3rem;
+			padding: 2.2rem 3.5rem;
+			border-bottom: 1px solid var(--border);
+		}
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<h2><a>I'm Michael Newman<br /></a></h2>
-									<p>Software Developer and Gaming fanatic!<br />
-										My ambition is to create games and experiences that make a lasting impact on the world. Check out some of my projects!
-								</header>
-								<header>
-										<h2><a>3D Action RPG in Unity: Fateful Fragments!</a></h2>
-									</header>
-									<a class="image main"><img src="images/fragments gif.gif" alt="" /></a>
-									<p>A large prototype of a 3D action rpg game made in Unity with C#. You fight in a stylized world using souls-like combat against powerful bosses, defeating enemies and being rewarded with fragments; Which you will then use to unlock companion characters, new weapons, equipment, and upgrades. Features a full sound track, custom 3D models, four multi-phase unique boss encounters, responsive AI state machine agents, cinematic cutscenes, minigames, and much more. Form your party for an awesome and challenging adventure to save the world from demons!</p>
-									<ul class="actions special">
-										<li><a href="fragments.html" class="button large">Check it out</a></li>
-									</ul>
-							</article>
+		.logo {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: 1.15rem;
+			letter-spacing: -0.01em;
+			color: var(--text);
+		}
 
-						<!-- Posts -->
-							<section class="posts">
-								<article>
-									<header>
-											<h2><a>3D auto-chess game in Unity: Table Tactics!</a></h2>
-										</header>
-										<a class="image main"><img src="images/Table Tactics Gif.gif" alt="" /></a>
-										<p>Experience the excitement of tactical combat with a tabletop simulator built in Unity 3D where you assemble your own army to face off against opponents. Strategize and observe as battles unfold in a chaotic display of skill and strategy. Embark on a challenging campaign as you progress through increasingly difficult battles, honing your tactical abilities and leading your units to victory.</p>
-										<ul class="actions special">
-											<li><a href="tactics.html" class="button large">Check it out</a></li>
-										</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>full stack discussion forum application</a></h2>
-									</header>
-									<a class="image fit"><img src="images/img 9.png" alt="" /></a>
-									<p>A 3 Tier software architecture project using a SQL database, a Tomcat Server, and a Web browser. Languages include HTML, CSS, JS, JSP, Java, SQL. Features incude users ability to ask and answer other users questions, moderation of posts when permissible, sorting/searching by keywords, and login/create account functionality.</p>
-									<ul class="actions special">
-										<li><a href="burningQ.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>3D Game Engine from Scratch: 3D Moon Lander</a></h2>
-									</header>
-									<a class="image fit"><img src="images/Moon Lander Gif.gif" alt="" /></a>
-									<p>I built a fully immersive 3D game experience from the ground up with a custom C++ game engine I made using Microsoft Frameworks as a base. Experience a rich and dynamic simulation, complete with advanced lighting, multiple camera perspectives, particle effects, precise physics calculations, and various win conditions.</p>
-									<ul class="actions special">
-										<li><a href="landingSim.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>Responsive Online Portfolio Website</a></h2>
-									</header>
-									<a class="image fit"><img src="images/html site for client.jpg" alt="" /></a>
-									<p>A responsive HTML/CSS website I made for a client to showcase her portfolio and to promote her business.</p>
-									<ul class="actions special">
-										<li><a href="website.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>3D Level Design Work</a></h2>
-									</header>
-									<a class="image fit"><img src="images/tutorialLevelTeaser.png" alt="" /></a>
-									<p>Check out a sample of some level design work I did on my Fateful Fragments project! See the process and mindset I had from start to finish! From grey-boxing to final product!</p>
-									<ul class="actions special">
-										<li><a href="leveldesign.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>VR Cooking+Dating Simulator</a></h2>
-									</header>
-									<a class="image fit"><img src="images/vr demo gif smaller.gif" alt="" /></a>
-									<p>Cook up a storm in virtual reality leveraging the 3D Unity game engine XR Interaction Toolkit, featuring socket-based controls to prepare a diverse menu of dishes that cook at varying speeds. Serve your creations to the correct customers to earn points, but beware of raw or burnt food that can significantly reduce your score. Use your spare time off of work to interact with your co-workers and build relationships.</p>
-									<ul class="actions special">
-										<li><a href="vrGame.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>3D MMORPG Dungeon Game</a></h2>
-									</header>
-									<a class="image fit"><img src="images/img 5.png" alt="" /></a>
-									<p>A 3D prototype of a MMORPG Game in Unity with Multiplayer using Photon; Featuring different servers with Network Instantiation, RPC calls, Inventory systems, Movement, Questing, and Interaction Systems </p>
-									<ul class="actions special">
-										<li><a href="unity.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>2D Platformer "Kaninjutsu"</a></h2>
-									</header>
-									<a class="image fit"><img src="images/Kaninjutsu Gif.gif" alt="" /></a>
-									<p>2D Ninja Crab Platformer with A* (A star) Pathfinding enemy AI and archer enemies! Multiple levels! Fast button mashing, directional attacking fun!</p>
-									<ul class="actions special">
-										<li><a href="kaninjutsu.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>2D Platformer "Hardcore Parkour!"</a></h2>
-									</header>
-									<a class="image fit"><img src="images/Hardcore parkour gif.gif" alt="" /></a>
-									<p>My first game I made back in 2020 when I first began game development. Made in 2D Unity, make sure to time your jumps carefully, grab as many coins as you can, and beware of moving platforms or saws! Don't jump in the water either!</p>
-									<ul class="actions special">
-										<li><a href="platformer.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-								<article>
-									<header>
-										<h2><a>Board Game: Dots and Dice!</a></h2>
-									</header>
-									<a class="image fit"><img src="images/new_img.jpg" alt="" /></a>
-									<p>Dots and Dice: Race against Time! Is a board game I made with a full rule set, custom cards, and its a load of fun. See if you can beat the clock with your friends!</p>
-									<ul class="actions special">
-										<li><a href="dotsndice.html" class="button">Check it out</a></li>
-									</ul>
-								</article>
-						</section>
-					</div>
+		.logo span {
+			color: var(--accent);
+		}
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; Michael Newman</li><li></div>
+		nav {
+			display: flex;
+			align-items: center;
+			gap: 2rem;
+		}
 
+		nav a {
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			transition: color 0.2s;
+		}
+
+		nav a:hover { color: var(--text); }
+
+		.nav-icons {
+			display: flex;
+			gap: 1rem;
+		}
+
+		.nav-icons a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			color: var(--muted);
+			text-decoration: none;
+			transition: border-color 0.2s, color 0.2s, background 0.2s;
+			font-size: 0.85rem;
+		}
+
+		.nav-icons a:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+			background: rgba(127,106,248,0.07);
+		}
+
+		/* ── HERO ── */
+		.hero {
+			position: relative;
+			z-index: 10;
+			padding: 4.5rem 3.5rem 3.5rem;
+			max-width: 900px;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.hero-eyebrow {
+			font-family: 'Inter', sans-serif;
+			font-size: 0.72rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1.2rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.75rem;
+		}
+
+		.hero-eyebrow::before,
+		.hero-eyebrow::after {
+			content: '';
+			display: block;
+			width: 28px;
+			height: 1px;
+			background: var(--accent);
+		}
+
+		h1 {
+			font-family: 'Inter', sans-serif;
+			font-weight: 700;
+			font-size: clamp(2.4rem, 5vw, 4rem);
+			line-height: 1.1;
+			letter-spacing: -0.03em;
+			color: var(--text);
+			margin-bottom: 1.4rem;
+		}
+
+		h1 .dim { color: var(--muted); font-weight: 400; font-style: italic; }
+
+		.hero-sub {
+			font-family: 'Inter', sans-serif;
+			font-size: 1rem;
+			font-weight: 400;
+			color: var(--muted);
+			max-width: 480px;
+			line-height: 1.8;
+			margin: 0 auto;
+		}
+
+		/* ── DIVIDER ── */
+		.section-header {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			gap: 1.5rem;
+			padding: 0 3.5rem;
+			margin-bottom: 2.5rem;
+		}
+
+		.section-header h2 {
+			font-family: 'Syne', sans-serif;
+			font-size: 0.7rem;
+			font-weight: 700;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--muted);
+			white-space: nowrap;
+		}
+
+		.section-header::after {
+			content: '';
+			flex: 1;
+			height: 1px;
+			background: var(--border);
+		}
+
+		/* ── GRID ── */
+		.grid-wrapper {
+			position: relative;
+			z-index: 10;
+			padding: 0 3.5rem 5rem;
+		}
+
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			gap: 1px;
+			background: var(--border);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			overflow: hidden;
+		}
+
+		/* ── CARD ── */
+		.card {
+			background: var(--surface);
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			text-decoration: none;
+			color: inherit;
+			overflow: hidden;
+			transition: background 0.25s;
+			cursor: pointer;
+		}
+
+		.card:hover {
+			background: #18181f;
+		}
+
+		.card:hover .card-arrow {
+			opacity: 1;
+			transform: translate(0, 0);
+		}
+
+		.card:hover .card-img img {
+			transform: scale(1.04);
+		}
+
+		.card:hover .card-glow {
+			opacity: 1;
+		}
+
+		.card-glow {
+			position: absolute;
+			inset: 0;
+			background: radial-gradient(ellipse at top left, var(--glow), transparent 65%);
+			opacity: 0;
+			transition: opacity 0.4s;
+			pointer-events: none;
+		}
+
+		.card-img {
+			width: 100%;
+			aspect-ratio: 16/9;
+			overflow: hidden;
+			background: #0a0a0c;
+			flex-shrink: 0;
+		}
+
+		.card-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+			transition: transform 0.5s ease;
+			opacity: 0.85;
+		}
+
+		.card-img .no-img {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+			opacity: 0.15;
+		}
+
+		.card-body {
+			padding: 1.4rem 1.5rem 1.5rem;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: 0.6rem;
+		}
+
+		.card-tag {
+			font-size: 0.65rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--accent);
+		}
+
+		.card-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 1rem;
+			line-height: 1.3;
+			color: var(--text);
+		}
+
+		.card-desc {
+			font-size: 0.77rem;
+			color: var(--muted);
+			line-height: 1.7;
+			flex: 1;
+		}
+
+		.card-footer {
+			padding: 0 1.5rem 1.4rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.card-pills {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.4rem;
+		}
+
+		.pill {
+			font-size: 0.62rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--muted);
+			background: var(--border);
+			border: 1px solid var(--border);
+			padding: 0.2rem 0.55rem;
+			border-radius: 4px;
+		}
+
+		.card-arrow {
+			width: 28px;
+			height: 28px;
+			border-radius: 50%;
+			background: var(--accent);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			opacity: 0;
+			transform: translate(-6px, 6px);
+			transition: opacity 0.25s, transform 0.25s;
+		}
+
+		.card-arrow svg {
+			width: 13px;
+			height: 13px;
+			fill: none;
+			stroke: #fff;
+			stroke-width: 2;
+			stroke-linecap: round;
+			stroke-linejoin: round;
+		}
+
+		/* ── FOOTER ── */
+		footer {
+			position: relative;
+			z-index: 10;
+			border-top: 1px solid var(--border);
+			padding: 1.5rem 3.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		footer p {
+			font-size: 0.72rem;
+			color: var(--muted);
+		}
+
+		/* ── FADE IN ANIMATION ── */
+		@keyframes fadeUp {
+			from { opacity: 0; transform: translateY(18px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		header  { animation: fadeUp 0.5s ease both; animation-delay: 0.05s; }
+		.hero   { animation: fadeUp 0.5s ease both; animation-delay: 0.15s; }
+		.section-header { animation: fadeUp 0.5s ease both; animation-delay: 0.25s; }
+		.grid-wrapper   { animation: fadeUp 0.5s ease both; animation-delay: 0.35s; }
+
+		/* ── RESPONSIVE ── */
+		@media (max-width: 768px) {
+			header, .hero, .section-header, .grid-wrapper, footer {
+				padding-left: 1.5rem;
+				padding-right: 1.5rem;
+			}
+			.grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<div class="logo">Michael<span>.</span>Newman</div>
+		<nav>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn">
+					<!-- LinkedIn icon -->
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+				</a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub">
+					<!-- GitHub icon -->
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+				</a>
 			</div>
+		</nav>
+	</header>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+	<!-- Hero -->
+	<div class="hero">
+		<div class="hero-eyebrow">Software Developer &amp; Gameplay Programmer</div>
+		<h1>Building games<br/><span class="dim">people remember.</span></h1>
+		<p class="hero-sub">Crafting interactive experiences — from souls-like RPGs to full-stack web apps. Here's what I've built.</p>
+	</div>
 
-	</body>
+	<!-- Projects label -->
+	<div class="section-header">
+		<h2>Projects</h2>
+	</div>
+
+	<!-- Grid -->
+	<div class="grid-wrapper">
+		<div class="grid">
+
+			<a class="card" href="fragments.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/fragments gif.gif" alt="Fateful Fragments"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · C# · 3D</div>
+					<div class="card-title">Fateful Fragments</div>
+					<div class="card-desc">Souls-like 3D action RPG featuring four multi-phase boss encounters, responsive AI state machine agents, an unlockable companion system, and a full original soundtrack.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">RPG</span>
+						<span class="pill">AI Agents</span>
+						<span class="pill">Prototype</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="tactics.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/Table Tactics Gif.gif" alt="Table Tactics"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · C# · 3D</div>
+					<div class="card-title">Table Tactics</div>
+					<div class="card-desc">Auto-chess tabletop simulator in Unity 3D. Build your army, then watch battles play out in real time — a campaign mode pushes your strategy through increasingly brutal fights.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Strategy</span>
+						<span class="pill">Tabletop</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="burningQ.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/img 9.png" alt="Discussion Forum"/></div>
+				<div class="card-body">
+					<div class="card-tag">Full Stack · Java · SQL</div>
+					<div class="card-title">Discussion Forum App</div>
+					<div class="card-desc">3-tier Q&A platform (SQL → Tomcat → browser) with user accounts, post moderation, and keyword search — built entirely in Java, JSP, HTML, CSS, and SQL.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">JSP</span>
+						<span class="pill">Tomcat</span>
+						<span class="pill">SQL</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="landingSim.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/Moon Lander Gif.gif" alt="Moon Lander"/></div>
+				<div class="card-body">
+					<div class="card-tag">C++ · Custom Engine · 3D</div>
+					<div class="card-title">3D Moon Lander</div>
+					<div class="card-desc">A 3D game engine built from scratch in C++ using Microsoft frameworks — advanced lighting, particle effects, precise physics, multiple camera modes, and multiple win conditions.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Engine Dev</span>
+						<span class="pill">Physics</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="website.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/html site for client.jpg" alt="Client Website"/></div>
+				<div class="card-body">
+					<div class="card-tag">HTML · CSS · Client Work</div>
+					<div class="card-title">Responsive Portfolio Website</div>
+					<div class="card-desc">Responsive HTML/CSS website built for a real client to showcase her portfolio and drive business — designed and delivered end-to-end.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Freelance</span>
+						<span class="pill">Responsive</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="leveldesign.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/tutorialLevelTeaser.png" alt="Level Design"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · Game Design</div>
+					<div class="card-title">3D Level Design</div>
+					<div class="card-desc">A full walkthrough of my level design process on Fateful Fragments — from initial grey-box to final polish, with the reasoning behind every decision.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Level Design</span>
+						<span class="pill">Process</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="vrGame.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/vr demo gif smaller.gif" alt="VR Game"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · XR · VR</div>
+					<div class="card-title">VR Cooking + Dating Sim</div>
+					<div class="card-desc">VR cooking sim using Unity's XR Interaction Toolkit with socket-based controls. Cook a diverse menu at varying speeds, serve the right customers, and don't burn anything — or your score tanks.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">VR</span>
+						<span class="pill">XR Toolkit</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="unity.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/img 5.png" alt="MMORPG"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · Photon · Multiplayer</div>
+					<div class="card-title">3D MMORPG Dungeon</div>
+					<div class="card-desc">Multiplayer Unity dungeon prototype using Photon — multiple servers, network instantiation, RPC calls, inventory, quest, movement, and interaction systems all wired up.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Multiplayer</span>
+						<span class="pill">Networking</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="kaninjutsu.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/Kaninjutsu Gif.gif" alt="Kaninjutsu"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · C# · 2D</div>
+					<div class="card-title">Kaninjutsu</div>
+					<div class="card-desc">2D ninja crab platformer with A* pathfinding enemies and archer AI. Fast, directional button-mashing combat across multiple levels.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Platformer</span>
+						<span class="pill">A* AI</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="platformer.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/Hardcore parkour gif.gif" alt="Hardcore Parkour"/></div>
+				<div class="card-body">
+					<div class="card-tag">Unity · 2D · Beginner</div>
+					<div class="card-title">Hardcore Parkour!</div>
+					<div class="card-desc">My first game, made in 2020. Time your jumps, collect coins, survive moving platforms and spinning saws. The project that started everything.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Origin</span>
+						<span class="pill">Platformer</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+			<a class="card" href="dotsndice.html">
+				<div class="card-glow"></div>
+				<div class="card-img"><img src="images/new_img.jpg" alt="Dots and Dice"/></div>
+				<div class="card-body">
+					<div class="card-tag">Physical · Game Design</div>
+					<div class="card-title">Dots and Dice!</div>
+					<div class="card-desc">A physical board game I designed from scratch — full ruleset, custom cards, and a race-against-the-clock multiplayer format that's genuinely fun to play.</div>
+				</div>
+				<div class="card-footer">
+					<div class="card-pills">
+						<span class="pill">Board Game</span>
+						<span class="pill">Tabletop</span>
+					</div>
+					<div class="card-arrow"><svg viewBox="0 0 24 24"><polyline points="5 12 19 12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+				</div>
+			</a>
+
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
+
+</body>
 </html>

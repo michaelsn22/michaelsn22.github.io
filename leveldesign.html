@@ -1,142 +1,219 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Level Design — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root { --bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; }
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.section-h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); margin-bottom: 0.75rem; margin-top: 2.5rem; }
+		.section-h4 { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+		.img-full { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-bottom: 1rem; }
+		.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+		.img-pair img { width: 100%; display: block; object-fit: cover; }
+		.img-trio { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+		.img-trio img { width: 100%; display: block; object-fit: cover; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+		.btn-primary:hover { background: transparent; color: var(--accent); }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .img-pair, .img-trio { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">Fateful Fragments · Unity · Level Design</div>
+			<h1 class="project-title">3D Level Design</h1>
+			<p class="project-tagline">From grey-box to final product — a full walkthrough of the level design process on Fateful Fragments.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span><span class="pill">Grey-Boxing</span><span class="pill">Environment Art</span>
+				<span class="pill">Player Psychology</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<img class="img-full" src="images/Map Screenshot4.jpg" alt="Map overview" />
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<!-- MAP 1 -->
+		<div class="divider"><h2>Map 1 — Forest</h2></div>
+		<div class="section-content">
+			<p>I needed a forest map that could believably house wolves — both as enemy NPCs and as a boss encounter. With the prototype NPCs and boss already built, I needed an environment to match their theme. So I started by gathering references.</p>
 
-            <!-- Main -->
-                <div id="main">
+			<h3 class="section-h4">Blockout Inspirations</h3>
+			<div class="img-trio">
+				<img src="images/blockout idea 1 ver 1.png" alt="" />
+				<img src="images/blockout idea 1 ver 2.jpg" alt="" />
+				<img src="images/blockout idea 1 ver 3.jpg" alt="" />
+			</div>
+			<div class="img-trio">
+				<img src="images/blockout idea 2 ver 1.jpg" alt="" />
+				<img src="images/blockout idea 2 ver 2.jpg" alt="" />
+				<img src="images/blockout idea 3 area leads to cave leads to boss wolf maybe.jpg" alt="" />
+			</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>Level Design Work</a></h2>
-                                <a class="image fit"><img src="images/Map Screenshot4.jpg" alt="" /></a>
-                                <h2>Here is a recap of some of the level design work I've done on my game Fateful Fragments:</h2>
-                                <br><h3>Tools and Technologies Used:</h3>
-                                <li>Unity Game Engine</li>
-                                <br>
-                                <br><h2>First Map</h2>
-                                <p>I needed a forest map design that would be a location that wolves could believably exist in. I had prototype npc wolves and a boss already created, so I needed an environment to match their theme and to compliment my action RPG game. So I began to gather references to use as inspiration for my design.</p>
-                                <br><h2>Here's What I Gathered:</h2>
-                                <h3>blockout inspiration 1</h3>
-                                <a class="image fit"><img src="images/blockout idea 1 ver 1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/blockout idea 1 ver 2.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/blockout idea 1 ver 3.jpg" alt="" /></a>
-                                <h3>blockout inspiration 2</h3>
-                                <a class="image fit"><img src="images/blockout idea 2 ver 1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/blockout idea 2 ver 2.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/blockout idea 3 area leads to cave leads to boss wolf maybe.jpg" alt="" /></a>
-                                <p>After taking a few days to decide on which map style I liked best, I decided to go with the 2nd style of map. Specifically my main inspiration was the last picture above this text. I had a clear picture of what I wanted in my head: A linear path with multiple enemies on it, and a split off path that required some light platforming elements and less enemies. Both of these paths eventually meeting at some 'point of interest' where the player will find the boss to fight. With this picture in my head and references in-hand, I got to work.</p>
-                                <br><h2>Here's What I Made:</h2>
-                                <h3>Blockout 1</h3>
-                                <p>Hopefully you can see that idea come to life here, as we have a large blockout of a woodland area, lots of trees, and two branching paths for the player to travel. Points of interest are a waterfall, a center island, and a red 'temple' at the intersection of the two paths which leads to the boss arena.</p>
-                                <a class="image fit"><img src="images/blockout test 1.png" alt="" /></a>
-                                <p>After some play-testing, the map seemed simple and fun, so I stuck with it and decided to begin my passes, adding in more permanent environmental props to replace the grey blocks.</p>
-                                <a class="image fit"><img src="images/blockout test 2.jpg" alt="" /></a>
-                                <p>Here is the up-close final result after many more passes adding things such as grass, fog, foam lines for the waterfall, falling tree leave particle systems, and much more.</p>
-                                <a class="image fit"><img src="images/with post2.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/teaserglide.jpg" alt="" /></a>
-                                <p>Overall the experience was very fun, as this was my first time really doing my own level design. I think the map looks great, and the performance is currently sitting at ~150fps on the low end at high graphical settings. On top of all that, my skills as a designer have grown and I can't wait to design more levels!</p>
-                                <a class="image fit"><img src="images/map 1 screenshot.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/Map Screenshot4.jpg" alt="" /></a>
-                                <h3>Second Iteration</h3>
-                                <p>I decided to make some more modifications to bring this map to life. Specifically focusing on the flat, boring, and dull boss arena. I thought it would be fun to have a roman colosseum type structure to really make the moment cinematic and add to the atmosphere of the boss fight. Heres what that looked like:</p>
-                                <a class="image fit"><img src="images/first blockout of boss arena map 1.png" alt="" /></a>
-                                <p>You can see the central idea of an elevated platform and giant pillars potentially holding a structure up looked cool... But I couldn't have a roof as that would interfere with my global lighting in the scene. The pillars also felt boring being on the sides like this. So I made them more central and added some cool walls! You can also see I kept the three giant relics from my original blockout, since they still fit the theme I wanted.</p>
-                                <a class="image fit"><img src="images/new wolf arena teaser.png" alt="" /></a>
-                                <a class="image fit"><img src="images/another map1 arena pic with particles.png" alt="" /></a>
-                                <p>After slapping my shader on the environment and adding some blue particles near the giant relics, I was happy that I was able to improve the environment so much while doing so little. It may not be elden ring good, but I think it still looks pretty cool.</p>
-                                <br><h2>Second Map</h2>
-                                <p>I needed a japanese rooftop type of map design that would be a location that a katana wielding boss could believably exist in. Again I had prototype npc's and a boss already created, so I needed an environment to match their theme. So I gathered references to use as inspiration for my design.</p>
-                                <br><h2>Here's What I Gathered:</h2>
-                                <a class="image fit"><img src="images/bridge example.png" alt="" /></a>
-                                <a class="image fit"><img src="images/buildings to run across.png" alt="" /></a>
-                                <p>I was trying to get something that drew inspiration from Japanese symbols such as the Torii gate, and traditional buildings of Japan you would see in an anime. I pictured the player running across a rooftop fighting against fast-attacking katana minor enemies, eventually leading to a large building like a dojo that would
-                                    house the final boss fight arena. So I got to work...
-                                </p>
-                                <a class="image fit"><img src="images/map2blockout.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map2blockoutTopView.png" alt="" /></a>
-                                <p>Here is the overview of the map with my thoughts and locations of collectable items to reward exploration:</p>
-                                <a class="image fit"><img src="images/map2blockoutTopViewAnnotated2.png" alt="" /></a>
-                                <p>You can see I wanted to cater to three different types of players: The casuals that would just take path 1 and head for the boss, The explorer seeking treasures hidden in the map, and the speedrunner who will skip the map and go straight for the boss.</p>
-                                <p>Here are the props used:</p>
-                                <a class="image fit"><img src="images/map2propsUsed.png" alt="" /></a>
-                                <p>Here are the screenshots of the map implemented:</p>
-                                <a class="image fit"><img src="images/map2teaser1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map2teaser2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map2teaser3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map2teaser4.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map2teaser5.png" alt="" /></a>
-                                <p>After adding in the rain, fog, and spawn triggers, the map was ready to go! I really enjoyed making this one and I'm happy with how it turned out.</p>
-                                <a class="image fit"><img src="images/newer map 2 screenshot.png" alt="" /></a>
-                                <br><h2>Third Map</h2>
-                                <p>I needed a fresh idea that was very flexible for any enemy type. I had re-watched some lord of the rings scenes and took some inspiration from them with an idea of a cliffside castle. With that idea in mind, I set out working on a block out. Here's what it looked like:</p>
-                                <a class="image fit"><img src="images/shadowMapV2 WM.png" alt="" /></a>
-                                <p>I combined the castle theme of the helms deep fight with the spaciousness of halo 3's map called 'The Ark' which is essentially a large and open outdoor area. You can also see I took the 'destroyed door' idea from my first map that I implemented. You can also see I've placed lots of fog particle systems that I supplemented with real fog later on.</p>
-                                <p>Here are some shots of the map with global lighting turned on and fog turned off/down:</p>
-                                <a class="image fit"><img src="images/map blockout with text1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with text2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with text3.jpg" alt="" /></a>
-                                <p>You can see the large courtyard area and steep dropoff that the player can choose to navigate via a bridge or using their glider. There are also corners to hide collectables in.</p>
-                                <a class="image fit"><img src="images/map blockout with text4.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with text6.png" alt="" /></a>
-                                <p>Here are some shots with the correct lighting and fog enabled!</p>
-                                <a class="image fit"><img src="images/map blockout with light and fog.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with light and fog2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with light and fog3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/map blockout with light and fog4.png" alt="" /></a>
-                                <p>The pictures dont do the map justice much, but its a thriller with the player having to watch their back and check every corner for enemies that blend into the environment! It's shadowy and dark until the sparks fly!</p>
-                                <p>Here's a peek of what the final result looked like after a few more passes from me:</p>
-                                <a class="image fit"><img src="images/new shadow map teaser.png" alt="" /></a>
-                                <p>Lastly, here is a quick couple of time-lapse pictures of my tutorial level. Originally I was aiming for a destroyed town that the player would be fleeing, with a downed telephone pole and destroyed car blocking their path so they would have to jump over the obstacle. It turned into a burning city street I constructed myself based on a mix of suburban and city Japanese structures! Thanks for checking out my stuff!</p>
-                                <a class="image fit"><img src="images/tutorial level blockout.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial level blockout2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorialLevelTeaser.png" alt="" /></a>
-                                <h3>Thanks for reading about my level designs! Go ahead and give the game a try by clicking the link below! Thanks!</h3>
-                                <a href="https://mnew22.itch.io/fateful-fragments" target="_blank"><span class="label">Link: Itch.io, password: mnew</span></a>
-                            </header>
-                        </article>
-                </div>
+			<p>After a few days of review, I went with the 2nd style — specifically the last image above. My picture in my head: a linear main path with enemies, plus a split-off path requiring light platforming and fewer enemies. Both paths meet at a point of interest leading to the boss arena.</p>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+			<h3 class="section-h3">Grey-Box</h3>
+			<p>Here's that idea come to life — a large woodland area with two branching paths, a waterfall point of interest, a center island, and a red temple at the intersection leading to the boss arena.</p>
+			<img class="img-full" src="images/blockout test 1.png" alt="First blockout" />
+			<p>After playtesting, the map felt simple and fun. I began replacing grey blocks with permanent environmental props.</p>
+			<img class="img-full" src="images/blockout test 2.jpg" alt="Second blockout pass" />
 
-        </div>
+			<h3 class="section-h3">Final Result</h3>
+			<p>After many more passes adding grass, fog, foam lines for the waterfall, falling leaf particle systems, and more. Performance is sitting at ~150fps on low-end hardware at high graphical settings.</p>
+			<div class="img-pair">
+				<img src="images/with post2.jpg" alt="" />
+				<img src="images/teaserglide.jpg" alt="" />
+			</div>
+			<div class="img-pair">
+				<img src="images/map 1 screenshot.jpg" alt="" />
+				<img src="images/Map Screenshot4.jpg" alt="" />
+			</div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+			<h3 class="section-h3">Boss Arena — Second Iteration</h3>
+			<p>I went back to improve the flat, boring boss arena with a roman colosseum-inspired structure to make the moment feel cinematic. A roof was out of the question since it would break global lighting, so I focused on giant pillars and walls.</p>
+			<img class="img-full" src="images/first blockout of boss arena map 1.png" alt="Boss arena first blockout" />
+			<p>The central pillars felt boring on the sides, so I made them more central and added walls. Kept the three giant relics from the original blockout since they still fit the theme.</p>
+			<div class="img-pair">
+				<img src="images/new wolf arena teaser.png" alt="" />
+				<img src="images/another map1 arena pic with particles.png" alt="" />
+			</div>
+			<p>After applying the environment shader and adding blue particles near the relics, the arena was transformed without much extra work. Not Elden Ring quality, but I think it looks pretty cool.</p>
+		</div>
 
+		<!-- MAP 2 -->
+		<div class="divider"><h2>Map 2 — Japanese Rooftops</h2></div>
+		<div class="section-content">
+			<p>I needed a Japanese rooftop environment for a katana-wielding boss. The vision: the player runs across rooftops fighting fast katana enemies, eventually reaching a large dojo-like building for the final boss arena. I drew inspiration from Torii gates and traditional anime-style Japanese architecture.</p>
+
+			<div class="img-pair">
+				<img src="images/bridge example.png" alt="" />
+				<img src="images/buildings to run across.png" alt="" />
+			</div>
+
+			<div class="img-pair">
+				<img src="images/map2blockout.png" alt="" />
+				<img src="images/map2blockoutTopView.png" alt="" />
+			</div>
+
+			<p>I designed for three player types: casuals who follow the main path to the boss, explorers seeking hidden treasures, and speedrunners who skip everything and go straight for the boss.</p>
+			<img class="img-full" src="images/map2blockoutTopViewAnnotated2.png" alt="Annotated map overview" />
+			<img class="img-full" src="images/map2propsUsed.png" alt="Props used" />
+
+			<h3 class="section-h3">Final Screenshots</h3>
+			<div class="img-pair">
+				<img src="images/map2teaser1.png" alt="" />
+				<img src="images/map2teaser2.png" alt="" />
+			</div>
+			<div class="img-pair">
+				<img src="images/map2teaser3.png" alt="" />
+				<img src="images/map2teaser4.png" alt="" />
+			</div>
+			<img class="img-full" src="images/map2teaser5.png" alt="" />
+			<p>After adding rain, fog, and spawn triggers, the map was ready. Really happy with how this one turned out.</p>
+			<img class="img-full" src="images/newer map 2 screenshot.png" alt="" />
+		</div>
+
+		<!-- MAP 3 -->
+		<div class="divider"><h2>Map 3 — Cliffside Castle</h2></div>
+		<div class="section-content">
+			<p>I wanted a flexible environment for any enemy type. Re-watching Lord of the Rings gave me the idea of a cliffside castle. I combined Helm's Deep with the open spaciousness of Halo 3's "The Ark" — a large outdoor area with a castle theme.</p>
+			<img class="img-full" src="images/shadowMapV2 WM.png" alt="Shadow map blockout" />
+			<p>I also reused the "destroyed door" idea from map 1. Fog particle systems were placed throughout, later supplemented with real engine fog.</p>
+
+			<div class="img-pair">
+				<img src="images/map blockout with text1.jpg" alt="" />
+				<img src="images/map blockout with text2.png" alt="" />
+			</div>
+			<div class="img-pair">
+				<img src="images/map blockout with text3.jpg" alt="" />
+				<img src="images/map blockout with text4.png" alt="" />
+			</div>
+			<img class="img-full" src="images/map blockout with text6.png" alt="" />
+
+			<h3 class="section-h3">With Lighting &amp; Fog</h3>
+			<div class="img-pair">
+				<img src="images/map blockout with light and fog.png" alt="" />
+				<img src="images/map blockout with light and fog2.png" alt="" />
+			</div>
+			<div class="img-pair">
+				<img src="images/map blockout with light and fog3.png" alt="" />
+				<img src="images/map blockout with light and fog4.png" alt="" />
+			</div>
+			<p>The screenshots don't fully do it justice — enemies blend into the dark environment until the sparks fly, making this map a real thriller. Here's the final result after a few more passes:</p>
+			<img class="img-full" src="images/new shadow map teaser.png" alt="" />
+		</div>
+
+		<!-- TUTORIAL -->
+		<div class="divider"><h2>Tutorial Level</h2></div>
+		<div class="section-content">
+			<p>Originally designed as a destroyed town the player was fleeing — with a downed telephone pole and destroyed car as obstacles. It evolved into a burning city street built from a mix of suburban and Japanese city structures.</p>
+			<div class="img-pair">
+				<img src="images/tutorial level blockout.png" alt="" />
+				<img src="images/tutorial level blockout2.png" alt="" />
+			</div>
+		</div>
+
+		<img class="img-full" src="images/tutorialLevelTeaser.png" alt="" />
+
+		<div class="cta-row">
+			<a href="https://mnew22.itch.io/fateful-fragments" target="_blank" class="btn btn-primary">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+				Try the Game on Itch.io — password: mnew
+			</a>
+			<a href="fragments.html" class="btn btn-secondary">View Fateful Fragments</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
 </body>
 </html>

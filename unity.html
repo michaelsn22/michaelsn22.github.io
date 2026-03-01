@@ -1,90 +1,137 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>3D MMORPG Dungeon — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root { --bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; }
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.video-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+		.video-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #000; margin-bottom: 1rem; }
+		.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.styled-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+		.styled-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #b8b4cc; line-height: 1.6; }
+		.styled-list li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; margin-top: 0.3rem; flex-shrink: 0; }
+		.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+		.section-h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; margin-top: 2rem; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+		.btn-primary:hover { background: transparent; color: var(--accent); }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .two-col { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">Unity · Photon · Multiplayer</div>
+			<h1 class="project-title">3D MMORPG Dungeon</h1>
+			<p class="project-tagline">A multiplayer dungeon RPG prototype inspired by Sword Art Online — built to bring back social, party-based gaming.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span><span class="pill">C#</span><span class="pill">Photon</span>
+				<span class="pill">Plastic SCM</span><span class="pill">GitHub</span><span class="pill">Team of 3</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<div class="video-label">Demonstration Video</div>
+		<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube-nocookie.com/embed/9bnCknV6Yg8"></iframe></div>
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<div class="divider"><h2>Concept &amp; Inspiration</h2></div>
+		<div class="section-content">
+			<p>I wanted to bring a cool idea to life in the form of an MMORPG. The vision was similar to Sword Art Online in scope — infinite levels, a core focus on finding parties to raid large dungeons with, and deep social gameplay reminiscent of older MMOs. The team was kept small since we were all relatively new to building multiplayer systems.</p>
+		</div>
 
-            <!-- Main -->
-                <div id="main">
+		<div class="divider"><h2>Team</h2></div>
+		<div class="section-content">
+			<p>Team of 3 — two programmers and one artist. Small by design, given our inexperience with multiplayer architecture at the time.</p>
+		</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>3D MMORPG In Unity</a></h2>
-                                <br><h2>Concise Summary:</h2>
-                                <h2>Concept and Inspiration:</h2>
-                                <p>One day I decided I wanted to bring a cool idea to life, in the form of an MMORPG. The idea was very similar to sword art online in its scale, where there would be infinite levels and a core focus on finding parties/players to raid large dungeons with. I really wanted an MMO that brought back social gaming like the old days. So I set out with a fellow software engineer and an artist to make that goal a reality.</p>
-                                <h3>Team and Team Size:</h3>
-                                <p>Our team size was 3. Two programmers and one artist. The team was kept small as we were all relatively inexperienced at the time and had never build systems for multiplayer.</p>
-                                <h3>Main design goals:</h3>
-                                <li>Multiplayer With Various Servers</li>
-                                <li>Animations for running, sliding, falling, attacking, etc.</li>
-                                <li>Quest System</li>
-                                <li>Inventory System</li>
-                                <br><h3>Main Challenges Faced:</h3>
-                                <li>Complicated Animation State System</li>
-                                <li>Scaling Singleplayer Systems To Multiplayer</li>
-                                <li>Realistic Physics</li>
-                                <li>Realistic AI That Works With Multiplayer</li>
-                                <br><h3>Tools and Technologies Used:</h3>
-                                <li>Unity Engine</li>
-                                <li>C#</li>
-                                <li>Photon For Multiplayer Servers</li>
-                                <li>Plastic SCM</li>
-                                <li>Github</li>
-                                <li>Google Sheets for bug logs</li>
-                                <br><h3>Demonstration video</h3>
-                            </header>
-                            <div class="auto-resizable-iframe">
-                                <div>
-                                  <iframe frameborder="0" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/9bnCknV6Yg8"></iframe>
-                                </div>
-                            </div>
-                            <br>
-                            <ul class="actions special">
-                                <li><a href="https://github.com/michaelsn22/Unity-MMO" class="button large">Look at the code</a></li>
-                            </ul>
-                        </article>
-                </div>
+		<div class="divider"><h2>Design Goals &amp; Challenges</h2></div>
+		<div class="section-content">
+			<div class="two-col">
+				<div>
+					<h3 class="section-h3">Goals</h3>
+					<ul class="styled-list">
+						<li>Multiplayer with multiple servers</li>
+						<li>Animations for running, sliding, falling, attacking, etc.</li>
+						<li>Quest system</li>
+						<li>Inventory system</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="section-h3">Challenges</h3>
+					<ul class="styled-list">
+						<li>Complex animation state machine</li>
+						<li>Scaling single-player systems to multiplayer</li>
+						<li>Realistic physics</li>
+						<li>AI that works correctly in a multiplayer environment</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+		<div class="divider"><h2>Tools &amp; Technologies</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Unity Engine</li><li>C#</li><li>Photon (multiplayer servers)</li>
+				<li>Plastic SCM</li><li>GitHub</li><li>Google Sheets (bug logging)</li>
+			</ul>
+		</div>
 
-        </div>
+		<div class="cta-row">
+			<a href="https://github.com/michaelsn22/Unity-MMO" target="_blank" class="btn btn-primary">View Code on GitHub</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
-
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
 </body>
 </html>

@@ -1,92 +1,147 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Kaninjutsu — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root { --bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; }
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.video-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+		.video-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #000; margin-bottom: 1rem; }
+		.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.section-h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; margin-top: 2rem; }
+		.styled-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+		.styled-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #b8b4cc; line-height: 1.6; }
+		.styled-list li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; margin-top: 0.3rem; flex-shrink: 0; }
+		.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+		.itch-embed { border-radius: 10px; overflow: hidden; margin: 1rem 0; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+		.btn-primary:hover { background: transparent; color: var(--accent); }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .two-col { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">2D Platformer · Unity · C#</div>
+			<h1 class="project-title">Kaninjutsu</h1>
+			<p class="project-tagline">A ninja crab with two katana claws, A* pathfinding enemies, and parkour levels built for a university course.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span><span class="pill">C#</span><span class="pill">Photoshop</span>
+				<span class="pill">A* Pathfinding</span><span class="pill">Team of 3</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<div class="itch-embed">
+			<iframe frameborder="0" src="https://itch.io/embed/2348796" width="100%" height="167"><a href="https://mnew22.itch.io/kanin-test">Kaninjutsu by mnew22</a></iframe>
+		</div>
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<div class="video-label">Demonstration Video</div>
+		<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube-nocookie.com/embed/QlCT491Ceo0"></iframe></div>
 
-            <!-- Main -->
-                <div id="main">
+		<div class="divider"><h2>Concept &amp; Inspiration</h2></div>
+		<div class="section-content">
+			<p>I wanted to make a game for a game development course at San Jose State University, so my friend Kevin (another developer) and I came up with the idea: a ninja crab that could control both of its claws and slash enemies with its katana! We figured a 2D setting was best since we had to make our own art and I had prior experience with 2D games, so we committed to that style.</p>
+		</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>2D Platformer Game "Kaninjutsu"</a></h2>
-                                <br><h2>Concise Summary:</h2>
-                                <h2>Concept and Inspiration:</h2>
-                                <p>I wanted to make a game for a game development course at San Jose State University, so me and my friend who was another developer came up with the idea: A ninja crab that could control both of its claws and slash enemies with its katana! We figured a 2D setting was best since we had to make our own art and I had prior experience with 2d games so we committed to this style.</p>
-                                <br><h3>Team and Team Size:</h3>
-                                <p>The team originally was just Kevin Chu (art), and myself(code) working on the project. About 2 months into development we added Tomer, a second coder onto our team to help meet deadlines.</p>
-                                <h3>Main design goals:</h3>
-                                <li>Create an attack system that simulated a crab using both of its claws</li>
-                                <li>Code an enemy that would chase you and attack you in some fashion</li>
-                                <li>Create a stealth system, where enemies only target you when in range</li>
-                                <li>Have multiple enemy types</li>
-                                <li>Have parkour levels to break-up combat ones</li>
-                                <br><h3>Main Challenges Faced so Far:</h3>
-                                <li>Making Each Frame of Attack Animations</li>
-                                <li>Making The Game Less Punishing on Each Death</li>
-                                <li>Making the Environment Look Like a Ninja Crab Dojo</li>
-                                <li>Making Fun Enemies that Would Chase You or Shoot Projectiles</li>
-                                <li>Improving Tutorial Information</li>
-                                <br><h3>Tools and Technologies Used:</h3>
-                                <li>Unity Game Engine</li>
-                                <li>C#</li>
-                                <li>Photoshop</li>
-                                <li>Itch.io</li>
-                                <br>
-                                <iframe frameborder="0" src="https://itch.io/embed/2348796" width="552" height="167"><a href="https://mnew22.itch.io/kanin-test">Kaninjutsu by mnew22</a></iframe>
-                                <br><h3>Demonstration video</h3>
-                            </header>
-                            <div class="auto-resizable-iframe">
-                                <div>
-                                  <iframe frameborder="0" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/QlCT491Ceo0"></iframe>
-                                </div>
-                            </div>
-                            <br>
-                            <br><br><ul class="actions special">
-                                <li><a href="https://github.com/michaelsn22/Crab-Platformer-Game-2D-Unity" class="button large">Look at the code</a></li>
-                            </ul>
-                        </article>
-                </div>
+		<div class="divider"><h2>Team</h2></div>
+		<div class="section-content">
+			<p>The team started as just Kevin Chu (art) and myself (code). About 2 months into development we added Tomer, a second coder, to help meet deadlines.</p>
+		</div>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+		<div class="divider"><h2>Design Goals &amp; Challenges</h2></div>
+		<div class="section-content">
+			<div class="two-col">
+				<div>
+					<h3 class="section-h3">Goals</h3>
+					<ul class="styled-list">
+						<li>Attack system simulating a crab using both claws</li>
+						<li>Enemy AI that chases and attacks the player</li>
+						<li>Stealth system — enemies only target you when in range</li>
+						<li>Multiple enemy types</li>
+						<li>Parkour levels to break up combat sections</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="section-h3">Challenges</h3>
+					<ul class="styled-list">
+						<li>Creating each frame of attack animations by hand</li>
+						<li>Making the game less punishing on death</li>
+						<li>Designing environments that looked like a ninja crab dojo</li>
+						<li>Building fun enemies that chase or shoot projectiles</li>
+						<li>Improving tutorial clarity</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-        </div>
+		<div class="divider"><h2>Tools &amp; Technologies</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Unity Game Engine</li><li>C#</li><li>Photoshop</li><li>Itch.io</li>
+			</ul>
+		</div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+		<div class="cta-row">
+			<a href="https://mnew22.itch.io/kanin-test" target="_blank" class="btn btn-primary">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+				Play on Itch.io
+			</a>
+			<a href="https://github.com/michaelsn22/Crab-Platformer-Game-2D-Unity" target="_blank" class="btn btn-secondary">View Code on GitHub</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
 
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
 </body>
 </html>

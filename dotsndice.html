@@ -1,77 +1,144 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Dots and Dice — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root { --bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; }
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.section-h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; color: var(--text); margin-bottom: 0.75rem; margin-top: 2rem; }
+		.styled-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+		.styled-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #b8b4cc; line-height: 1.6; }
+		.styled-list li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; margin-top: 0.3rem; flex-shrink: 0; }
+		.img-full { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-bottom: 1rem; }
+		.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+		.img-pair img { width: 100%; display: block; object-fit: cover; }
+		.version-block { border-left: 2px solid var(--border); padding-left: 1.25rem; margin-bottom: 2.5rem; }
+		.version-block:hover { border-left-color: var(--accent); }
+		.version-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+		.mechanic-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.mechanic-tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text); background: rgba(127,106,248,0.1); border: 1px solid rgba(127,106,248,0.3); padding: 0.3rem 0.75rem; border-radius: 4px; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .img-pair { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">Physical · Board Game · Game Design</div>
+			<h1 class="project-title">Dots and Dice!</h1>
+			<p class="project-tagline">Race Against Time — a cooperative board game I designed from scratch with custom cards and a real-time challenge mechanic.</p>
+			<div class="pill-row">
+				<span class="pill">Real-Time</span><span class="pill">Dice Rolling</span>
+				<span class="pill">Cooperative</span><span class="pill">1-4 Players</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<div class="divider"><h2>The Game</h2></div>
+		<div class="section-content">
+			<p>Dots and Dice: Race Against Time is a board game where 1–4 players work together to traverse a board using two dice and a pawn per player. Complete time-restricted challenges that pop up without failing, and reach the end. Players choose between a shorter, more difficult path or a longer, easier path. Fail a round and everyone goes back to the starting position. Grab your dice, land on some dots, and roll away!</p>
+			<div class="mechanic-tags">
+				<span class="mechanic-tag">Real-Time</span>
+				<span class="mechanic-tag">Dice Rolling</span>
+				<span class="mechanic-tag">Cooperative</span>
+			</div>
+		</div>
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<div class="divider"><h2>Development Journey</h2></div>
+		<div class="section-content">
 
-            <!-- Main -->
-                <div id="main">
+			<div class="version-block">
+				<div class="version-label">Version 0 — Initial Design</div>
+				<p>The initial board before the first playtest. The theme at this point was treating patients in a hospital, where every tile had different patients you'd treat by rolling the dice numbers shown on notecards.</p>
+				<img class="img-full" src="images/game board 0.png" alt="Board Version 0" />
+			</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>Dots and Dice!</a></h2>
-                            </header>
-                            <p><b>Dots and Dice: Race Against Time! The story of my game!</b><br><br>
+			<div class="version-block">
+				<div class="version-label">Version 1 — First Playtest, Feb 14, 2022 (SJSU)</div>
+				<p>The first playtest with my partner Rheya established the core mechanics: Dice Rolling for movement, Real-Time pressure during rounds (35-second limit), and Cooperative play. We added a shorter difficult path and a longer easier path, plus varied dot difficulties. The game felt good — the only issue was that the rules took too long to explain.</p>
+				<img class="img-full" src="images/game board shot 1.jpg" alt="Board Version 1" />
+			</div>
 
-                                <b>Description:</b>
-                                Dots and Dice: Race Against Time is a board game where anywhere from 1-4 players work together to traverse through the board using their dice (2 per player) and their pawn (player character/token). Complete the time restricted challenges that pop up without failing and reach the end! Players have a choice between a shorter more difficult path, and a longer but easier path. If failure occurs during any of the rounds... players must go back to the starting position! Grab your dice, land on some dots, and roll away!
-                                <br>
-                                <b>Initial board design (before first play test): Board Version 0</b>
-                                <a class="image fit"><img src="images/game board 0.png" alt="" /></a>
-                                <b>My First Play Test in Class at SJSU on February 14th 2022:</b> This session consisted of deciding what mechanics I wanted to use for my game and some of the rules. My partner Rheya decided she liked my idea so we stuck with it. The theme I brainstormed before class was dealing with patients in a hospital, where every tile had different patients you would treat by rolling the dice numbers listed in boxes on notecards. The main mechanisms that we used were Dice Rolling(movement and playing during rounds), Real-Time (time constraint during rounds), Cooperative Game (players work together and progress equally). We played the game, mixed up different kinds of dots that varied in difficulty, and added a shorter difficult path + a longer easier path to choose from. Each round had a time limit of 35 seconds. Players cooperated to rack up points from healing patients. The game felt good during play and we really enjoyed it. The only issues we ran into were that rules took a long time to explain. <br><b>Here are the mechanics descriptions on Board Game Geek:</b> <br>
-                                https://boardgamegeek.com/boardgamemechanic/2831/real-time
-                                <br>
-                                https://boardgamegeek.com/boardgamemechanic/2072/dice-rolling
-                                <br>
-                                https://boardgamegeek.com/boardgamemechanic/2023/cooperative-game
-                                <br>
-                                <b>Screenshot after session 1 (Board and cards that were used) Version 1</b>
-                                <a class="image fit"><img src="images/game board shot 1.jpg" alt="" /></a>
-                                <b>Second Play Session (w/ family members) And What Changed:</b> My second play session I was satisfied with the core mechanic of the game and I wanted to rework the theme/board and hone in on what time constraints should be used each round. My theme before was too complicated and therefore I simplified it down to just rolling the dice to move, landing on certain dot variations that range in difficulty, and progressing cooperatively. I also changed the medical complicated idea into a simple board or casino game you would play with your friends. Instead of trying to match your dice to a pattern similar to the human body, you just roll dice that add up to the number on the card when it is flipped over (similar to "craps" at a casino). I made this change so that rules would be easily understood by anyone, even for people who struggled with the English language or were new to games. On version one, my time constraint was 35 seconds, and I changed/lowered this to 30 seconds for version two after I played it a few times with my parents. The reason I made this change was to increase the challenge presented and the risk associated with choosing the shorter path of travel. I also added better visuals to understand what square you are on and what cards you draw when you are on them. There are also 4 separate stacks of cards for easy grabbing. <br><b>Here is the picture of the new board Version 2:</b><br>
-                                <a class="image fit"><img src="images/new_img.jpg" alt="" /></a>
-                                Here are samples for what the cards and supplies look like:<br>
-                                <a class="image fit"><img src="images/game cards.jpg" alt="" /></a>
-                                <b>Third Play Session in Class (Play and Enjoy):</b> This session I focused on how playable the game was and how easy the rules were to understand. My two partners I worked with enjoyed the game and I was able to explain the rules to them with 5 sentences. It can't be any more simple than that. I did not make any changes to the core mechanics or the theme/board, as everything already felt polished and understandable. I was very happy with this, and my game was fun + visually appealing. The only change I made was that I realized my game can be played with up to four players. The only real limitations are desk space and dice, as each player needs two dice of their own and an area to roll them in.
-                                Overall making my board game was a load of fun, and luckily the core mechanics I chose were easy to work with, leading me to need less changes and refinement in terms of mechanics. Most of my refinement came in the form of board space and tile dot placement. I kept the same mechanics all the way from version 0 to version 2. My final mechanics were <b>Real Time, Dice Rolling, and Cooperative Game.</b> Thanks for reading and following the journey of my board game <b>Dots and Dice: Race Against Time!</b></p>
-                        </article>
-                </div>
+			<div class="version-block">
+				<div class="version-label">Version 2 — Second Playtest (Family)</div>
+				<p>I simplified the theme significantly. Instead of matching dice to body part patterns, players just roll dice that add up to the number on the flipped card — similar to craps at a casino. Easy enough for anyone to understand, regardless of age or language. I also lowered the time constraint from 35 to 30 seconds after playtesting with my parents, to increase the challenge of the shorter path. Added four separate card stacks for easier grabbing and improved visual design.</p>
+				<div class="img-pair">
+					<img src="images/new_img.jpg" alt="Board Version 2" />
+					<img src="images/game cards.jpg" alt="Cards and supplies" />
+				</div>
+			</div>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+			<div class="version-block">
+				<div class="version-label">Version 2 — Third Playtest (Class)</div>
+				<p>Two classmates played and I explained the rules in five sentences. That was my target — if I needed more, the design needed work. No core mechanic changes were needed. The game was fun, polished, and visually appealing. The only discovery: the game actually supports up to four players, limited only by desk space and dice availability.</p>
+			</div>
 
-        </div>
+		</div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+		<div class="divider"><h2>Final Mechanics</h2></div>
+		<div class="section-content">
+			<p>The core mechanics stayed consistent from version 0 through version 2 — most refinement came in board layout and tile dot placement, not the underlying rules.</p>
+			<ul class="styled-list">
+				<li><strong style="color: var(--text)">Real-Time</strong> — 30-second challenge windows create urgency and risk</li>
+				<li><strong style="color: var(--text)">Dice Rolling</strong> — movement and challenge resolution</li>
+				<li><strong style="color: var(--text)">Cooperative Game</strong> — players progress together and share consequences</li>
+			</ul>
+		</div>
+
+		<div class="cta-row">
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
+</body>
+</html>

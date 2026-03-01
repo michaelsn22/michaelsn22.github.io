@@ -1,68 +1,123 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Shaders Practice — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root { --bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; }
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.step-block { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; margin-bottom: 2.5rem; align-items: start; }
+		.step-number { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 2.5rem; color: var(--border); line-height: 1; padding-top: 0.1rem; min-width: 3rem; }
+		.step-body p { color: #b8b4cc; margin-bottom: 0.75rem; font-size: 0.95rem; }
+		.step-img { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-top: 0.75rem; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .step-block { grid-template-columns: 1fr; } .step-number { font-size: 1.5rem; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">Unity · URP · Shader Graph</div>
+			<h1 class="project-title">Shaders Practice</h1>
+			<p class="project-tagline">A programmer learns to make characters not look terrible — a step-by-step exploration of Unity's URP and Shader Graph.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span><span class="pill">URP</span><span class="pill">Shader Graph</span><span class="pill">Anime Style</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<div class="divider"><h2>The Process</h2></div>
+		<div class="section-content">
+			<p>I'm not an artist — I'm a programmer. But I wanted to learn enough about shaders and Unity's URP to make my game characters look polished and stylized. Here's the journey, step by step.</p>
+		</div>
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<div class="step-block">
+			<div class="step-number">01</div>
+			<div class="step-body">
+				<p>Starting point: a free .fbx model from the Unity Asset Store. The colors are dull and the model doesn't stand out at all in the game world.</p>
+				<img class="step-img" src="images/step 1.png" alt="Step 1 - baseline model" />
+			</div>
+		</div>
 
-            <!-- Main -->
-                <div id="main">
+		<div class="step-block">
+			<div class="step-number">02</div>
+			<div class="step-body">
+				<p>First pass with Unity's URP. The blurriness is gone and the colors are noticeably improved. Happy to see results right away.</p>
+				<img class="step-img" src="images/step 2.png" alt="Step 2 - URP applied" />
+			</div>
+		</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>Shaders Practice Project In Unity</a></h2>
-                                <p>Just wanted to log the progress of myself learning shaders in Unity. I am not experienced with art techniques or gfx very much.</p>
-                                <br><p>Here is what I started with. I just used a free .fbx model on the Unity Asset Store.</p>
-                                <a class="image fit"><img src="images/step 1.png" alt="" /></a>
-                                <p>As you can see, the models colors are very dull and just don't stand out well in the game. So I wanted to improve this.</p>
-                                <p>I went ahead and experimented with Unitys URP. Here is the first product!</p>
-                                <a class="image fit"><img src="images/step 2.png" alt="" /></a>
-                                <p>With these first changes, you can see I improved the blurryness of the model, as well as the very dull color! I was happy to see results. Next I wanted to see if I could make the model look more like an anime.</p>
-                                <a class="image fit"><img src="images/step 3.png" alt="" /></a>
-                                <p>I added a small outline on the character model, and changed her skin tone a little bit, but I was not very happy with much on this version except her eyes. I did a great job on the eye textures!</p>
-                                <p>At this point I had to learn shaders, or at least how to apply shaders. So I gave it a try: </p>
-                                <a class="image fit"><img src="images/step 4.png" alt="" /></a>
-                                <p>What an improvement since the start! The character now stands out even in a colorful world, and has a cool anime outline too! </p>
-                                <p>I am not an artist, I am a programmer. So this is where my journey stops for now. I plan to apply this to my Unity MMORPG Project to really make it pop! Thanks for reading!</p>
-                            </header>
-                        </article>
-                </div>
+		<div class="step-block">
+			<div class="step-number">03</div>
+			<div class="step-body">
+				<p>Added a small outline on the character model and adjusted her skin tone to push toward an anime style. Not satisfied with most of it — but the eye textures came out great.</p>
+				<img class="step-img" src="images/step 3.png" alt="Step 3 - anime outline attempt" />
+			</div>
+		</div>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+		<div class="step-block">
+			<div class="step-number">04</div>
+			<div class="step-body">
+				<p>Applied a proper shader. The character now stands out even in a colorful world and has a clean anime-style outline. A massive improvement over step 1.</p>
+				<p>This is where my shader journey stops for now — the goal was always to apply this to my Unity MMORPG project to make it pop, and it does exactly that.</p>
+				<img class="step-img" src="images/step 4.png" alt="Step 4 - final shader result" />
+			</div>
+		</div>
 
-        </div>
+		<div class="cta-row">
+			<a href="unity.html" class="btn btn-secondary">See the MMORPG Project</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
+</body>
+</html>

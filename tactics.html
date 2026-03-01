@@ -1,505 +1,354 @@
 <!DOCTYPE HTML>
 <html>
-	<head>
-		<title>Michael's Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<head>
+	<title>Table Tactics — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		:root {
+			--bg: #0d0d0f; --surface: #141418; --border: #1f1f28; --border-h: #3a3a52;
+			--text: #e2e0f0; --muted: #6b6880; --accent: #7f6af8; --glow: rgba(127,106,248,0.15);
+		}
+		html { scroll-behavior: smooth; }
+		body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+		body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.5; }
+		header { position: relative; z-index: 10; display: flex; align-items: center; justify-content: center; gap: 3rem; padding: 2.2rem 3.5rem; border-bottom: 1px solid var(--border); animation: fadeUp 0.5s ease both; }
+		.logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); text-decoration: none; }
+		.logo span { color: var(--accent); }
+		nav { display: flex; align-items: center; gap: 2rem; }
+		nav a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+		nav a:hover { color: var(--text); }
+		.nav-icons { display: flex; gap: 1rem; }
+		.nav-icons a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--border); border-radius: 8px; color: var(--muted); text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; }
+		.nav-icons a:hover { border-color: var(--accent); color: var(--accent); background: rgba(127,106,248,0.07); }
+		.page { position: relative; z-index: 10; max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+		.project-hero { margin-bottom: 3.5rem; animation: fadeUp 0.5s ease both; }
+		.project-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+		.project-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--accent); }
+		.project-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.4rem, 5vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.05; color: var(--text); margin-bottom: 1.2rem; }
+		.project-tagline { font-size: 1rem; color: var(--muted); max-width: 580px; font-style: italic; }
+		.pill-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+		.pill { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--border); padding: 0.25rem 0.65rem; border-radius: 4px; }
+		.video-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.75rem; margin-top: 1.5rem; }
+		.video-wrap { position: relative; width: 100%; padding-top: 56.25%; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); background: #000; margin-bottom: 1rem; }
+		.video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+		.divider { display: flex; align-items: center; gap: 1.2rem; margin: 3rem 0 2rem; }
+		.divider h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+		.divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+		.section-content p { color: #b8b4cc; margin-bottom: 1rem; font-size: 0.95rem; }
+		.section-h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin-bottom: 0.75rem; margin-top: 2rem; }
+		.styled-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
+		.styled-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #b8b4cc; line-height: 1.6; }
+		.styled-list li::before { content: '▸'; color: var(--accent); font-size: 0.7rem; margin-top: 0.3rem; flex-shrink: 0; }
+		.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+		.img-full { width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; margin-bottom: 1rem; }
+		.img-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 1rem; }
+		.img-pair img { width: 100%; display: block; object-fit: cover; }
+		.update-block { border-left: 2px solid var(--border); padding-left: 1.25rem; margin-bottom: 2rem; }
+		.update-block:hover { border-left-color: var(--accent); }
+		.update-date { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+		.cta-row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+		.btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.7rem 1.4rem; border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+		.btn-primary { background: var(--accent); color: #fff; border: 1px solid var(--accent); }
+		.btn-primary:hover { background: transparent; color: var(--accent); }
+		.btn-secondary { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+		.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+		footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 1.5rem 3.5rem; display: flex; align-items: center; justify-content: space-between; }
+		footer p { font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
+		@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+		@media (max-width: 768px) { header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; } .page { padding: 2.5rem 1.25rem 5rem; } .two-col { grid-template-columns: 1fr; } .img-pair { grid-template-columns: 1fr; } footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; } }
+	</style>
+</head>
+<body>
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></a>
+			</div>
+		</nav>
+	</header>
 
-		<!-- Wrapper -->
-        <div id="wrapper" class="fade-in">
+	<div class="page">
+		<div class="project-hero">
+			<div class="project-eyebrow">Auto-Chess · Unity · C#</div>
+			<h1 class="project-title">Table Tactics!</h1>
+			<p class="project-tagline">A tabletop strategy game — place your units, watch the chaos, survive the campaign.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span><span class="pill">C#</span><span class="pill">JSON</span>
+				<span class="pill">AI State Machines</span><span class="pill">Solo Dev</span>
+			</div>
+		</div>
 
-            <!-- Header -->
-                <header id="header">
-                    <a href="index.html" class="logo">Michael Newman</a>
-                </header>
+		<div class="video-label">Game Trailer</div>
+		<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/bhpx0cGu99Y?si=mjblYJ1dCZl1zOdN"></iframe></div>
+		<div class="video-label">Demonstration Playthrough</div>
+		<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/yfb9DAlZKo4?si=SFKiP0ZCVdfw02uW"></iframe></div>
+		<div class="video-label">Main Menu Demo</div>
+		<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/YZoimHigBGM"></iframe></div>
+		
+		<div class="video-label">Try the game here!</div>
+		<iframe frameborder="0" src="https://itch.io/embed/2311385?link_color=1dca30" width="552" height="167"><a href="https://mnew22.itch.io/table-tactics-demo">Table Tactics by mnew22</a></iframe>
 
-            <!-- Nav -->
-                <nav id="nav">
-                    <ul class="links">
-                        <li class="active"><a href="index.html">Home</a></li>
-                    </ul>
-                    <ul class="icons">
-                        <li><a href="https://www.linkedin.com/in/newman-michael/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linked-In</span></a></li>
-                        <li><a href="https://github.com/michaelsn22" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </nav>
+		<div class="divider"><h2>Concept &amp; Inspiration</h2></div>
+		<div class="section-content">
+			<p>I wanted to combine the aspects of a tabletop/board game and a strategy game to make something that emulates a mix of both genres designed for desktop/PC play. The idea was essentially having a game loop where the player chooses locations to place their units and pits them against the enemy's set of units for multiple rounds. Strategy is involved, as players must manage the amount of points they have to spend on units (points carry over from round to round) and also consider where to place those units for maximum efficiency.</p>
+			<p>This project is being developed entirely by myself — handling art, sound, game mechanics, lore, and everything else solo.</p>
+		</div>
 
-            <!-- Main -->
-                <div id="main">
+		<div class="divider"><h2>Design Goals &amp; Challenges</h2></div>
+		<div class="section-content">
+			<div class="two-col">
+				<div>
+					<h3 class="section-h3">Goals</h3>
+					<p>Create a game that is easy to understand, fun, and has replayability — intuitive controls and UI with a tutorial, diverse units with visually appealing abilities, and an endless ceiling for interesting unit types and strategies.</p>
+				</div>
+				<div>
+					<h3 class="section-h3">Challenges</h3>
+					<ul class="styled-list">
+						<li>Animating characters convincingly</li>
+						<li>Cohesive sound design across all units</li>
+						<li>AI for various unit types with different behaviors</li>
+						<li>Cohesive art and unit theming</li>
+						<li>UI design that doesn't get in the way</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 
-                    <!-- Featured Post -->
-                        <article class="post featured">
-                            <header>
-                                <h2><a>Table Tactics!</a></h2>
-                                <br><h2>Concise Summary:</h2>
-                                <h2>Concept and Inspiration:</h2>
-                                <p>I wanted to combine the aspects of a tabletop/board game and a strategy game to make something that emulates a mix of both genres designed for desktop/PC play. The idea was essentially having a game loop where the player chooses locations to place their units and pits them against the enemies set of units for multiple rounds. Strategy is involved, as players must manage the amount of points they have to spend on units (points carry over from round to round) and also consider where to place those units for maximum efficiency. With a fun variety of units and an increasingly difficult campaign mode, the game is going to be a ton of fun. </p>
-                                <h3>Team and Team Size:</h3>
-                                <p>This project is being developed entirely by myself. I wanted to test my skills and really bring my idea to life by myself. This includes handling art, sound, game mechanics, lore, and pretty much everything else by myself. </p>
-                                <br><h3>Main design goals:</h3>
-                                <p>I want to create a game that is easy to understand, fun, and has some replayability to it. This means having controls and UI that are intuitive and further explained through a tutorial. Units must be diverse, having abilities that are visually appealing and have impact in fights. Pick various units to place, pick where you want to place them, and watch them fight it out! Very simple but with endless opportunities for cool unit types and moves!</p>
-                                <br><h3>Main Challenges Faced so Far:</h3>
-                                <li>Animating Characters</li>
-                                <li>Cohesive Sound Design</li>
-                                <li>AI for Various Types of Units</li>
-                                <li>Cohesive Art/Unit Themeing</li>
-                                <li>UI Design</li>
-                                <br><h3>Tools and Technologies Used:</h3>
-                                <li>Unity Game Engine</li>
-                                <li>C#</li>
-                                <li>JSON</li>
-                                <br><h3>Game Features As Of Now:</h3>
-                                <li>Fully Narrated Tutorial Levels</li>
-                                <li>Dynamic Player Controllable Camera</li>
-                                <li>Full Sound System for All Units and Stages</li>
-                                <li>Standalone Executable That Enables Quick and Simple Game Access</li>
-                                <li>9 Unique Units To Field</li>
-                                <li>25 Minutes+ of Gameplay</li>
-                                <li>2 Maps, 9 Fight Encounters, and 1 Final Boss Fight</li>
-                                <li>15 Wave Survival Mode</li>
-                                <li>Map Hazard System</li>
-                                <li>Experience/Progression System with Unlockable Units</li>
-                                <li>Relic System for Replayability</li>
-                                <li>Hardcore Mode</li>
-                                <li>Game Saving System</li>
-                                <br><h3>Game Trailer</h3>
-                                <div class="auto-resizable-iframe">
-                                  <div>
-                                    <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/bhpx0cGu99Y?si=mjblYJ1dCZl1zOdN"></iframe>
-                                  </div>
-                              </div>
-                                <br><h3>Demonstration playthrough video</h3>
-                                <div class="auto-resizable-iframe">
-                                  <div>
-                                    <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/yfb9DAlZKo4?si=SFKiP0ZCVdfw02uW"></iframe>
-                                  </div>
-                              </div>
-                              <br></br>
-                                <h3>Main Menu Demo</h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/YZoimHigBGM"></iframe>
-                                    </div>
-                                </div>
-                                <br></br>
-                                <h2>Try the game for yourself!</h2>
-                                <iframe frameborder="0" src="https://itch.io/embed/2311385?link_color=1dca30" width="552" height="167"><a href="https://mnew22.itch.io/table-tactics-demo">Table Tactics by mnew22</a></iframe>
-                                <br></br>
-                                <h2>From Conception to current state (longer read):</h2>
-                                <p>Here is another one of my passion-projects in progress I'm working on in my spare time!</p>
-                                <p>The idea for this game is sort of difficult to describe, but essentially the idea of the game is for the player to strategize and field their units correctly in order to beat the enemies units. <br>Here is my initial idea for the game board. It will be a 4x6, with the board spaces being split into half of the enemies units and half of the players units.</p>
-                                <a class="image fit"><img src="images/draftboard.png" alt="" /></a>
-                                <p>I then went ahead and began to plan the UI elements that the game would have. Starting with the UI that would accompany the game board.</p>
-                                <a class="image fit"><img src="images/gameUI.png" alt="" /></a>
-                                <p>I was planning to have health bars, with little pictures for each unit that was currently on the field, so give the player all the current information of the battlefield. Before the fight starts, the player needs to pick units, so I designed that interface as well.</p>
-                                <a class="image fit"><img src="images/gameUI2.png" alt="" /></a>
-                                <p>Now that I had these sketches done, It was time to think about the campaign screen, as players would always arrive there before or after an encounter.</p>
-                                <a class="image fit"><img src="images/campaignscreen1.png" alt="" /></a>
-                                <p>My idea was to have some large pictures with a difficulty rating, a picture of the enemy for themeing, and their name. I also wanted some text to let the player know they could back out to the menu if needed.</p>
-                                <br><p>I was eager to jump in, so I chose a game engine I am very familiar with.... which was Unity.</p>
-                                <h3>The beginning of design!</h3>
-                                <p>I eagerly opened up a fresh Unity3D project, and got to work!</p>
-                                <p>Here's the game board! The red and blue pegs represent the places the player can select to spawn units.</p>
-                                <a class="image fit"><img src="images/design1.png" alt="" /></a>
-                                <p>Of course I needed the UI to accompany this scene, so I went ahead and made that too! At this point it was very basic, but it was a good start.</p>
-                                <a class="image fit"><img src="images/design 2.png 2.png" alt="" /></a>
-                                <p>It was at this point I also began to work on allowing the player to select UI elements and places to spawn units. When the player chooses a spot, it's color changes to blue. If they hover a spot with their mouse, it turns green. Lastly, any UI element that is selected turns a gold-hue.</p>
-                                <p>Getting back on track, I went ahead and made a fast mock-up of my Menu screen. I plan to have a fight-in-progress going on with fancy camera angles eventually, but for now a simple background will do.</p>
-                                <a class="image fit"><img src="images/design3.png" alt="" /></a>
-                                <p>I'm not an artist, but I'm happy with this simple mock-up for now! Time for the campaign screen design! I'm really not focusing on the art at the beginning of the project, so this one is a placeholder as well.</p>
-                                <a class="image fit"><img src="images/design4.png" alt="" /></a>
-                                <p>Each one of the cards will be a different enemy the player must fight in succession, with multiple rounds of fighting to each of them. For now, the 'Choose' button brings you straight into the first fight.</p>
-                                <p>After fixing a pesky bug that allowed players to select multiple spots to spawn units at once, I then worked on Instantiation of units at those selected spots.</p>
-                                <p>For clarity, I changed the spots to spawn units at to white, and the temoorary unit that gets spawned to blue. Here's what that looked like:</p>
-                                <a class="image fit"><img src="images/design5.png" alt="" /></a>
-                                <p>You can see I played with UI a bit, as I moved the 'start fight' button to the right side of the screen and added a 'place unit' button as well. The player also needs to deselect a position if they change their mind, so I added that feature as well with a right click of the mouse. The three blue units were prefabs that got spawned upon clicking the spawn unit button.</p>
-                                <p>After clicking the 'start fight' button, the simulation begins and at this time only our 3 units go attack the other enemy units that are darker color.</p>
-                                <a class="image fit"><img src="images/design6.png" alt="" /></a>
-                                <p>I was happy with what I had so far, I just wanted to make some tweaks to colors and improve visibility for the player selecting positions to spawn their units. I also made some lighting changes and began to work on a better AI with actual animations.</p>
-                                <p>My first idea for a weak melee unit was a little bunny rabbit with a sword. Ideally, he should be very annyoing and hop around all the time to try to stay out of enemies attack ranges, but be super squishy/low health. So that's what I did my best to create.</p>
-                                <h3>My first unit!</h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/ny-asPqTJXI"></iframe>
-                                    </div>
-                                </div>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/uzuDQoZMlrw"></iframe>
-                                    </div>
-                                </div>
-                                <p>The AI will decide whether to strafe at random times, or move in close for an attack! It will always prioritize whatever enemy is closest to it.</p>
-                                <p>I fixed my lighting bug that was occuring, and added some texture to the background/floor and to the tabletop.</p>
-                                <a class="image fit"><img src="images/design7.png" alt="" /></a>
-                                <p>As you can see, the visibility of units, spaces, and overall look of things drastically improved.</p>
-                                <a class="image fit"><img src="images/design8.png" alt="" /></a>
-                                <p>The next thing I had to do, was start to work on an enemy AI for my first unit and future units to fight. For now I adapted the bunny rabbit code, and made it work for enemy units as well.</p>
-                                <h3>Bunny fight!</h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/rKgq1i0v7r8"></iframe>
-                                    </div>
-                                </div>
-                                <h3>Another one!</h3>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/UslbBH6VKjE"></iframe>
-                                    </div>
-                                </div>
-                                <p>I have some small animation bugs, and the bunny only uses one attack, but now the units at least fight, and even have death animations! The bunny warpath begins!</p>
-                                <a class="image fit"><img src="images/warpath.png" alt="" /></a>
-                                <p>Now that I had an enemy to fight, I am beginning to design and add more units to fight against or play on your side.</p>
-                                <a class="image fit"><img src="images/addedUnits.jpg" alt="" /></a>
-                                <p>I added a slime girl who can perform basic attacks, but cannot strafe. I also added a harpy, who can strafe and has quite a long attack range. <br>Here is a sample of some of these units fighting:</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/6auk_7dxPVw"></iframe>
-                                    </div>
-                                </div>
-                                <p>I want something that is good to look at in the background while all the action is happening, so I'm experimenting with different terrains!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/r3TUjLdr8MU"></iframe>
-                                    </div>
-                                </div>
-                                <p>Here is some more action with even more characters!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/GFjoelS1S9s"></iframe>
-                                    </div>
-                                </div>
-                                <p>I plan to add some juicy feedback for the player, such as damage popups and of course audio so the player really feels the combat!</p>
-                                <p>For now, Here is a demonstration playthrough of one of my levels! (No commentary)</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/lKHk0tpdsf0"></iframe>
-                                    </div>
-                                </div>
-                                <p>Teaser image for my first special unit! (The giant blue bear if you can't tell)</p>
-                                <a class="image fit"><img src="images/hookPic.jpg" alt="" /></a>
-                                <p>Here is a video (fully) showcasing the audio adjustments I have included for player comfort!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/9aTu8rRJJJ8"></iframe>
-                                    </div>
-                                </div>
-                                <p>Update 1-8-23:</p>
-                                <li>Added camera movement (circular movement along a track, field of fiew/zoom adjustment, height adjustment)</li>
-                                <li>Added health bars, so that players can visually see damage being done and what units are fighting for their lives!</li>
-                                <li>I began to plan how I would implement unit abilities, and their mana bar that determines when to cast abilities</li>
-                                <p>Here is my amazing wireframe drawing detailing my plans.</p>
-                                <a class="image fit"><img src="images/ms paint health system.png" alt="" /></a>
-                                <p>My idea for the mana bar was for units to earn their ability over time through participation in combat. Giving players room for strategies like backline mages that would continue to build mana from afar. It also helps with a rush of adrenaline as players can visually see when a unit is about to unleash their abilities!</p>
-                                <p>First Testing of health bars:</p>
-                                <a class="image fit"><img src="images/healthbar1.png" alt="" /></a>
-                                <p>What health bars look like when fully depleted or when damaged:</p>
-                                <a class="image fit"><img src="images/healthbar2.png" alt="" /></a>
-                                <p>Additonally, health bars will disappear when units die, so that fights are not cluttered with irrelevant information.</p>
-                                <p>As you can see from the screenshots above, I also implemented camera controls, circular travel around the table + up/down + zooming in/out.</p>
-                                <p>Update 1-9-23:</p>
-                                <p>Ran into significant bugs while trying to work on a new AI that improves animation realism....</p>
-                                <p>Ideas for tutorial: (each step is a different UI that appears only for that step and disappears after the requested action is completed)</p>
-                                <p>Here are the wireframes for my tutorial, that will introduce the main mechanics and gameplay loop of my game:</p>
-                                <a class="image fit"><img src="images/tutorial step 1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 3.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 4.png" alt="" /></a>
-                                <a class="image fit"><img src="images/tutorial step 5.png" alt="" /></a>
-                                <p>With these wireframes in mind, I setout to work on the tutorial.</p>
-                                <p>After completing the tutorial, I realize that I need an additonal tutorial that explains the campaign screen... For now I will put that off to work on other features.</p>
-                                <p>For the campaign tutorial screen I want to touch on:</p>
-                                <li>The cards that demonstrate different enemies</li>
-                                <li>The fact that you will fight an enemy for multiple rounds</li>
-                                <li>Clicking ‘fight’ will send you into the combat</li>
-                                <p>Update 1-26-23</p>
-                                <p>I made a LARGE amount of changes since the previous update. So here is a video demonstration to prevent a wall of text that you would have to read! Keep an eye out for my save system and tutorial changes!</p>
-                                <p>Please note that there is no audio for my first two tutorial levels. This is because I plan to have narration explaining text on the screen, and that is a work in progress. All subsequent levels have fully functioning audio, as shown in previous videos.</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/QplpeD9vlpw"></iframe>
-                                    </div>
-                                </div>
-                                <p>The video demonstrates my tutorial 1, tutorial 2, and my new save system that keeps track of how far a player has gotten in the game. Even if the player exits the unity play mode, their data is saved, and they will start from where they left off if they click the 'continue' option on the main menu.</p>
-                                <p>Here is another video update, which shows some additional levels, and my save system in use.</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Q1p6Bm_rgjc"></iframe>
-                                    </div>
-                                </div>
-                                <p>Update 2-2-23</p>
-                                <li>Added new models for enemy units. Now ALL enemy units are a different color and model entirely than friendly units to help with clarity in fights. Mana bars and unit abilities being worked on too!</li>
-                                <li>Fixed bugs with save system. Player now is only warned of file deletion if there is an existing file.</li>
-                                <br>
-                                <p>Here is a video showing demonstration of new enemy models!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Zt7ISHDW_oc"></iframe>
-                                    </div>
-                                </div>
-                                <p>Update 2-6-23:</p>
-                                <li>Honed special ability section that fully works now and plays anim for that ability when mana full and attack is off cooldown</li>
-                                <li>Added knockback to enemies when the big bear casts his special.</li>
-                                <li>Added cool low-poly particle effect on ground when bear uses spec! 😀</li>
-                                <p>Lastly, here is a demonstration of the bear units ability!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/cZbad3J0Go8"></iframe>
-                                    </div>
-                                </div>
-                                <p>Update: 2-7-23:</p>
-                                <li>Added new ability and updated syrian warrior to 2.0 AI (same as bear)</li>
-                                <li>Added ultimate for Syria called “RALLY”</li>
-                                <li>Created new AI for archer</li>
-                                <li>Created AI for enemy archer+enemy bear</li>
-                                <li>Added bear to enemy units</li>
-                                <li>Added archer to enemy units</li>
-                                <p>Rally: Heal a certain amount (20), Increase max health (50), Doubles attack speed
-                                    This ability can occur multiple times in a fight, making syrian warrior a very strong unit but with a medium health pool (150 w/out bonuses)
-                                </p>
-                                <p>Update 2-8-23:</p>
-                                <li>Fixed camera zoom changing field of view rather than actual camera position….</li>
-                                <p>Update 2-9-23:</p>
-                                <li>Improved visibility and placement of text on tutorial 1.</li>
-                                <li>Added a coat to enemy slime with new material (not professional to have naked slime running around!!)</li>
-                                <li>Began working on snow/blizzard particles for a new map (campaign 2’s map)</li>
-                                <li>Added new mage/healer unit (fairy) that only targets and heals team members!</li>
-                                <p><b>I know there are a lot of changes now without a video or gif, don't worry there is a huge one coming!</b></p>
-                                <p>Update 2-10-23:</p>
-                                <li>Added heal particles that exist while the unit is being healed.</li>
-                                <li>Fixed bug on tutorial allowing player to spawn multiple rabbits that caused issues regarding scripted progression.</li>
-                                <li>Added end credits 😛</li>
-                                <li>Began to work on art for UI selection canvas (filling the “Art Missing” Slot)</li>
-                                <li>Bug fix regarding warm up time for particle systems</li>
-                                <p>Update 2-11-23:</p>
-                                <li>Added sounds for: Archer, Bear, Fighter, Rabbit (includes placing them down)</li>
-                                <li>Changed anim for fighter girls special</li>
-                                <li>Added particles for fighter girls special</li>
-                                <li>Enemy Unit balance</li>
-                                <li>Added victory noise after round win</li>
-                                <li>Lowered volume when game first loads so players aren’t ear blasted.</li>
-                                <p>Update 2-12-23:</p>
-                                <li>Every allied unit’s audio v1 completed</li>
-                                <li>Began work on enemy unit audio</li>
-                                <li>Biome work</li>
-                                <li>Buffed Syrian unit cost to better help players during mid-point cost scenarios.</li>
-                                <li>Fixed bug causing Slime girl to play her death animation twice… woops…</li>
-                                <li>Increased range for spatial audio noises on all units for better immersion</li>
-                                <li>Added camera shake when Bear uses his slam! (shakes screen for 0.5s)</li>
-                                <p>Update 2-13-23:</p>
-                                <li>Fixed audio spamming with rabbit while he was moving</li>
-                                <li>Tweaked syria unit audio (still not 100%.. Probably at 70% progress)</li>
-                                <li>Added audio to enemy rabbit and slime</li>
-                                <li>Large post-processing changes</li>
-                                <li>Fixed bug with save data on enemy 3 round 3 due to a missing load call.</li>
-                                <br>
-                                <p><b>At this point you can see I've been consistently getting work done. In lieu of spamming you with updates until the 20th of March, I will just post some screenshots to help you visualize some of the changes.</b></p>
-                                <p>Some snapshots of visual updates to the game:</p>
-                                <p>Context: I added images of units with their point cost included in the corner so that I could update the UI that helps players spawn units.</p>
-                                <a class="image fit"><img src="images/newarchertxt.png" alt="" /></a>
-                                <a class="image fit"><img src="images/newbeartxt.png" alt="" /></a>
-                                <p>Here is what the UI looked like before the update, and after the update:</p>
-                                <a class="image"><img src="images/nonchangedui.png" alt="" /></a>
-                                <a class="image"><img src="images/UIchanges.png" alt="" /></a>
-                                <p>If you've been paying attention, I also added a color pallet swap to green to match the nature levels of the game :).</p>
-                                <p><b>Tired of seeing the boring stuff? So am I. The following is my studio logo (made with canva)! Keep in mind I'm a one man show here so I made it a bit funny because why not.</b></p>
-                                <a class="image fit"><img src="images/StudioMnewPic.png" alt="" /></a>
-                                <p><b>Showtime! Here is a demonstration playthrough of the game in its current state on 2-20-2023. This is what my first group of play testers are seeing.</b></p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/x_5to2St3oA"></iframe>
-                                    </div>
-                                </div>
-                                <p>I've gotten great feedback on the game from my group of playtesters, and have begun work on some of the suggestions put forward!</p>
-                                <p>Update 2-22-23:</p>
-                                <li>MAJOR UI FIXES: Remember that darn bug that caused your unit selection to go away as soon as you clicked on something else? I fixed that pesky bug so now that issue is no more!!!</li>
-                                <li>Fixed the camera positioning!!! Now the camera properly rotates around the center of the table!</li>
-                                <p>Update 2-23-23:</p>
-                                <li>Major updates to the board!!! Players can now press the ‘Undo’ Button to undo their recent purchases which will then refund the appropriate points and free up that board space to be used again!!!! Thank you to the playtesters for suggesting this!</li>
-                                <br>
-                                <p>Things added from 2-23 until 3-11</p>
-                                <li>Added feedback 'clicking' noises to every single UI in the game</li>
-                                <li>Removed the 'takeDamage' animation from all units in the game</li>
-                                <li>Added feedback noise when players forget to choose a spot or a character to spawn. This also applies to when players have insufficient funds for a unit</li>
-                                <li>Added an entire experience system to the game, with a rewards system sprinkled in, which features things such as unlocking a brand new unit that shakes up the meta at level 5!</li>
-                                <li>Experience points are passively earned for beating levels, failing levels, or beating levels you've already beaten. Points obviously adjust for each of these conditions.</li>
-                                <li>Crafted an entire storyline for the game! Details coming soon!</li>
-                                <li>Added an entire 'relic' system to the game, which helps with replayability and fun randomess that isn't frustrating for the player. This feature of course can be turned on and off. Keep in mind these relics are randomized! So each playthrough will be different relics offered to you!</li>
-                                <li>Added a HARDCORE MODE! In this mode, if you die once your save gets deleted and you must start over again! Only for the most hardcore players! (Can be turned on or off of course)</li>
-                                <p>Here is some of the brainstorming I did, followed by the final products.</p>
-                                <p>Pop up/unlock screen draft:</p>
-                                <a class="image fit"><img src="images/Unit Unlock popup draft.png" alt="" /></a>
-                                <p>Unlock/Choice screen draft for relic system:</p>
-                                <a class="image fit"><img src="images/Relic Unlock popup draft.png" alt="" /></a>
-                                <p>draft ideas for relics:</p>
-                                <a class="image fit"><img src="images/relic brainstorm.png" alt="" /></a>
-                                <p>Here was my first try at implementing an unlock screen!</p>
-                                <a class="image fit"><img src="images/firstPopUpImplemented.png" alt="" /></a>
-                                <p>Here is the Experience Bar you will be greeted with before and after every fight!</p>
-                                <a class="image fit"><img src="images/final xp bar.png" alt="" /></a>
-                                <p>Now, onto the finale! Here are my final implementations of a few of the BIG things In this large update.</p>
-                                <p>My new unit description and unlock screen!</p>
-                                <a class="image fit"><img src="images/finalUnitPopup.png" alt="" /></a>
-                                <p>Some of the relics I came up with and added to the game:</p>
-                                <a class="image fit"><img src="images/finalrelic1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/finalrelic2.png" alt="" /></a>
-                                <a class="image fit"><img src="images/finalrelic3.png" alt="" /></a>
-                                <p>Here is a full list of the relics I have planned and came up with:</p>
-                                <li>Frenzied Start: All of your units start with half hp but double attack speed</li>
-                                <li>Shields Up: Your units gain a 30 damage shield at the start of the round. Enemy units deal 30% increased damage.</li>
-                                <li>Fortune's Price: You will gain a random extra unit at the start of the battle, but enemies have 30% more health</li>
-                                <li>Extended Reach: Increases all of the players units attack ranges slightly.</li>
-                                <li>Phantom Army: This relic creates temporary copies of the player's units that fight alongside them, but also creates temporary copies of enemy units as well.</li>
-                                <li>Chaos Catalyst: All enemy units are randomized, you start with 30% extra points at the start of every round.</li>
-                                <li>Feline Fury: The enemy will spawn little cats that nip at your legs for small amounts of damage (new ones spawn every 5s and are untargetable.)</li>
-                                <li>Blistering Cold: A snowstorm starts at the beginning of each round. The storm damages all of your units on the board for some damage every second. +30% attack speed for your units.</li>
-                                <li>Toxic Empowerment: Poison that hurts all your units and turns them purple, every 2s it does damage to them but all your units do 2x damage</li>
-                                <li>Rapid Precision: All archers on your board gain 2x attack speed, but all enemy rabbits get quadruple health.</li>
-                                <li>Defiant Valor: Your Swordswoman(rally unit) gains 60% more health, but enemy archers have double damage.</li>
-                                <li>Vengeful Spirit: This relic allows the player's units to deal bonus damage to enemies when they have not been hit yet, but also makes enemy units receive this same bonus.</li>
-                                <li>Shadow Gambit: Your assassins start with a half full mana bar, enemy archers have double attack speed.</li>
-                                <li>Soul Siphon: This relic allows the player's units to steal health from enemies they attack, but also causes enemy units to steal health from the player's units when they attack.</li>
-                                <li>Arrowstorm Alchemy: This relic grants a temporary AOE damage effect to archer units for the player, but also causes enemy slime girl units' attacks to have a chance to create a clone of themselves to fight.</li>
-                                <li>Size Might Matter: All enemy units double in size and gain triple the health. Your units gain double attack damage.</li>
-                                <li>I Can Do It Better: All your units gain double attack speed. All enemy units gain triple attack speed.</li>
-                                <br>
-                                <p>Sorry for the text dump, but I had a lot of great ideas to share! Don't forget that the relics in my game are randomized! Each playthrough is different from the last! I also have abilities planned for the player to activate while in battle, but that's for another time!</p>
-                                <p>Here is a new video playthrough to help you visualize some of the changes. Soon I have a group of videos SPECIFICALLY showing off each relic I have added and its effects in battle! Enjoy the video!</p>
-                                <p>Timestamps of note are at 5 minutes and at 7:40. Those time stamps will show you the relic system and the new unit being unlocked!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/MB-3bnt6GO0"></iframe>
-                                    </div>
-                                </div>
-                                <p>Relics currently in the game for playtesting:</p>
-                                <li>Fortunes Price fully added to the game</li>
-                                <li>Frenzied Start fully added to the game (THIS ONE IS SO FUN!!!!)</li>
-                                <li>Size Might Matter fully added to the game (wow this is hard)</li>
-                                <li>Rapid Precision fully added to the game(rabbit enjoyers rejoice!)</li>
-                                <li>Blistering Cold fully added to the game(winter is upon us!!)</li>
-                                <br>
-                                <p>Update 3-12-23</p>
-                                <p>Check out my new main menu screen!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Cdq9Q2KQNTg"></iframe>
-                                    </div>
-                                </div>
-                                <p>Updates 3-13 - 3-30</p>
-                                <li>Added an entirely new second section of content (including a new map and new music) to the game! This includes a revamped main menu that swaps between maps after a full rotation of the camera!</li>
-                                <li>Gave the enemy access to all of the same units that the player has access too!</li>
-                                <li>Added a total of 9 relics into the game as it stands currently.</li>
-                                <li>Added a relic that randomizes every single enemy unit in the game! Chaos Catalyst! This one took me a while but it's finished!</li>
-                                <li>Major updates to all units! No more sliding units when they should be running! Added extra fluidity changes to all animations to help smooth things out during combat</li>
-                                <li>No more double death animation on rabbits!</li>
-                                <li>Damage is properly applied at the time of impact on abilities now (mostly affected fighter girl and giant bears ultimate abilities)</li>
-                                <li>Added levels into the game where the grid that you place units on gets bigger! Time for even bigger battles!</li>
-                                <li>Major optimizations to the game! No more frame lag at all!</li>
-                                <li>Lastly, I've added a unit information page so that you can find out what every unit does!</li>
-                                <br>
-                                <p>Well thats enough of a text dump. Here is a video now. Go on and check it out!</p>
-                                <p>Gameplay demo and short showcase of the new map! Play the game to see the rest!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/EEZ8gfn9quk"></iframe>
-                                    </div>
-                                </div>
-                                <p>Demo of the revised new main menu that shows the new map after a full camera rotation!</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/YZoimHigBGM"></iframe>
-                                    </div>
-                                </div>
-                                <br>
-                                <p>Update 4-1-23</p>
-                                <p>The new playtestable version of the game is out! Now in a standalone executable file! Super easy to run! Check out the demo:</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/8Vv5d30oq_M"></iframe>
-                                    </div>
-                                </div>
-                                <p>Updates for 4-2 to 4-12</p>
-                                <li>Added new particles for fighter girl and giant bear abilities!</li>
-                                <li>Improved visibility of all the UI in the game! Adding background frames and billboards to make text stand out</li>
-                                <li>Fixed a bug that allowed players to pull up the main settings menu while the secondary settings menu was already open!</li>
-                                <li>Added a tooltip system to the game! Now players can view the stats of units that they hover before placing them!</li>
-                                <li>Finally added a real arrow prefab that the archers shoot! No more flying white boxes!</li>
-                                <br>
-                                <p>Here are some snapshots of these changes:</p>
-                                <p>Tooltip and UI changes:</p>
-                                <a class="image"><img src="images/firstTooltip1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/secondTooltip1.png" alt="" /></a>
-                                <a class="image fit"><img src="images/ui tip change.png" alt="" /></a>
-                                <a class="image fit"><img src="images/changed bg on tutorial.jpg.png" alt="" /></a>
-                                <a class="image fit"><img src="images/characteframe1.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/characterframe2.jpg" alt="" /></a>
-                                <p>New explosion particles (much better than those big red boxes)</p>
-                                <div class="auto-resizable-iframe">
-                                    <div>
-                                      <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/teN_nWfDB-g"></iframe>
-                                    </div>
-                                </div>
-                                <p>Action shot of archer shooting arrow prefab!</p>
-                                <a class="image fit"><img src="images/archer action shot.png" alt="" /></a>
-                                <p>Latest Update Screenshots with Board Hazards!</p>
-                                <a class="image fit"><img src="images/board hazard tutorial img.png" alt="" /></a>
-                                <a class="image fit"><img src="images/zones causing chaos.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/another map buff pic.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/yet another map buff pic describing hint for assassin use.jpg" alt="" /></a>
-                                <p>New survival mode with 10 waves!</p>
-                                <a class="image fit"><img src="images/survival img 1.jpg" alt="" /></a>
-                                <p>Can you make your points last long enough?</p>
-                                <a class="image fit"><img src="images/survival img 2.jpg" alt="" /></a>
-                                <b><h3>Update 11/7/2023</h3></b>
-                                <li>Major optimization of Enemy AI across the entire game. Enemies now target more efficiently and game performance has seen a 20% increase</li>
-                                <li>major bugfix for movement! Enemies and allies no longer play running animation even when all enemies are dead! This bug has been around since ai version 1! Glad to have fixed it! 🙂</li>
-                                <li>fixed the chaos catalyst relic! Random spawns are now bug free!</li>
-                                <li>fixed bug where allied units would preemptively target enemy assassins if those assassins were spawned in via the chaos catalyst relic</li>
-                                <li>fixed bug where units would slide after running for a certain distance. Now all units (friendly and foe) will properly transition to their run animation, back to an attack animation, and back to an idle animation when needed. No longer immersion breaking to see units sliding everywhere like they're on ice :D!</li>
-                                <br>
-                                <b><h3>Update 11/18/2023</h3></b>
-                                <li>Fixed a bug where there was ~1% chance for a randomly spawned unit to be null when the chaos catalyst relic was enabled</li>
-                                <li>Added rag-doll mechanics when units are knocked back to their death! They now will go flying off the board/stage🙂</li>
-                                <li>Added damage and heal text pop ups to help players visualize what’s happening on the screen. Yellow text for regular damage, light red for high damage, and dark red for critical damage. Don't forget green text for healing!</li>
-                                <b>Snapshots:</b>
-                                <a class="image fit"><img src="images/knockback ragdoll.jpg" alt="" /></a>
-                                <a class="image fit"><img src="images/knockback ragdoll2.png" alt="" /></a>
-                                <b>Here is a short video demonstration of the game with damage popups:</b>
-                                <div class="auto-resizable-iframe">
-                                  <div>
-                                    <iframe frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/yfb9DAlZKo4?si=SFKiP0ZCVdfw02uW"></iframe>
-                                  </div>
-                              </div>
-                                <br>
-                                <b><h3>Upcoming Changes:</h3></b>
-                                <li>UI Overhaul and Game Polish</li>
-                                <li>Unit Balancing</li>
-                                <li>Relic System Tweaks</li>
-                                <br>
-                                <h2>Give it a try!</h2>
-                                <iframe frameborder="0" src="https://itch.io/embed/2311385?link_color=1dca30" width="552" height="167"><a href="https://mnew22.itch.io/table-tactics-demo">Table Tactics by mnew22</a></iframe>
-                                <br></br>
-                                <h3>For all future updates, please view the itch.io page!</h3>
-                                <br></br>
-                                <p>Thank you for checking out TableTactics, and for following along with me on this journey. Check out the Itch.io page for more recent updates on TableTactics!</p>
-                            </header>
-                        </article>
-                </div>
+		<div class="divider"><h2>Features</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Fully narrated tutorial levels</li>
+				<li>Dynamic player-controllable camera</li>
+				<li>Full sound system for all units and stages</li>
+				<li>Standalone executable for quick access</li>
+				<li>9 unique units to field</li>
+				<li>25+ minutes of gameplay across 2 maps, 9 fight encounters, and 1 final boss fight</li>
+				<li>15-wave survival mode</li>
+				<li>Map hazard system</li>
+				<li>Experience/progression system with unlockable units</li>
+				<li>Relic system for replayability (randomized each run)</li>
+				<li>Hardcore mode (one death = save deleted)</li>
+				<li>Game saving system</li>
+			</ul>
+		</div>
 
-            <!-- Copyright -->
-                <div id="copyright">
-                    <ul><li>&copy; Michael Newman</li><li></div>
+		<div class="divider"><h2>Tools &amp; Technologies</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Unity Game Engine</li><li>C#</li><li>JSON</li>
+			</ul>
+		</div>
 
-        </div>
+		<div class="divider"><h2>Development Log</h2></div>
+		<div class="section-content">
+			<p>Below is the full dev log chronicling the game's development from initial concept to current state.</p>
 
-    <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.scrollex.min.js"></script>
-        <script src="assets/js/jquery.scrolly.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+			<h3 class="section-h3">Initial Design</h3>
+			<p>Here is my initial idea for the game board — a 4x6 grid split between enemy and player sides.</p>
+			<img class="img-full" src="images/draftboard.png" alt="Draft board" />
+			<p>I then planned the UI elements, starting with the game board HUD — health bars with unit portraits — and the unit selection screen.</p>
+			<img class="img-full" src="images/gameUI.png" alt="Game UI sketch" />
+			<img class="img-full" src="images/gameUI2.png" alt="Unit selection UI sketch" />
+			<p>And the campaign screen, which players would always arrive at before or after an encounter:</p>
+			<img class="img-full" src="images/campaignscreen1.png" alt="Campaign screen sketch" />
+
+			<h3 class="section-h3">Early Prototyping</h3>
+			<p>Here's the initial game board in Unity — red and blue pegs represent spawn positions. I then added basic UI, selection highlighting (blue = selected, green = hovered, gold = active UI), and a mock menu screen.</p>
+			<div class="img-pair"><img src="images/design1.png" alt="" /><img src="images/design 2.png" alt="" /></div>
+			<div class="img-pair"><img src="images/design3.png" alt="" /><img src="images/design4.png" alt="" /></div>
+			<p>After fixing a bug that let players select multiple spawn spots at once, I implemented unit instantiation at selected positions:</p>
+			<img class="img-full" src="images/design5.png" alt="" />
+			<img class="img-full" src="images/design6.png" alt="" />
+
+			<h3 class="section-h3">First Unit: The Bunny</h3>
+			<p>My first unit idea: a weak melee bunny that hops around to dodge, super squishy but annoying. The AI decides whether to strafe or move in for an attack, always prioritizing the nearest enemy.</p>
+			<div class="video-label">First unit demo</div>
+			<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/ny-asPqTJXI"></iframe></div>
+			<div class="video-label">Bunny vs bunny fights</div>
+			<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/rKgq1i0v7r8"></iframe></div>
+
+			<p>Added texture to the background and tabletop, dramatically improving visual clarity:</p>
+			<div class="img-pair"><img src="images/design7.png" alt="" /><img src="images/design8.png" alt="" /></div>
+			<img class="img-full" src="images/warpath.png" alt="Bunny warpath" />
+
+			<h3 class="section-h3">More Units &amp; Environments</h3>
+			<p>Added a slime girl (basic attacks, no strafing) and a harpy (long range, can strafe). Started experimenting with terrain backgrounds:</p>
+			<img class="img-full" src="images/addedUnits.jpg" alt="New units" />
+			<div class="video-label">Units fighting</div>
+			<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/6auk_7dxPVw"></iframe></div>
+			<div class="video-label">Terrain experiments</div>
+			<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/r3TUjLdr8MU"></iframe></div>
+
+			<h3 class="section-h3">Health Bars &amp; Camera</h3>
+			<p>Added health bars, mana bars (earned through combat, triggers abilities), and camera controls — circular movement, zoom, height adjustment:</p>
+			<img class="img-full" src="images/ms paint health system.png" alt="Health system wireframe" />
+			<div class="img-pair"><img src="images/healthbar1.png" alt="" /><img src="images/healthbar2.png" alt="" /></div>
+
+			<h3 class="section-h3">Tutorial Design</h3>
+			<p>Designed a step-by-step tutorial where each step shows a UI prompt that disappears only after the player completes the action:</p>
+			<div class="img-pair"><img src="images/tutorial step 1.png" alt="" /><img src="images/tutorial step 2.png" alt="" /></div>
+			<div class="img-pair"><img src="images/tutorial step 3.png" alt="" /><img src="images/tutorial step 4.png" alt="" /></div>
+			<img class="img-full" src="images/tutorial step 5.png" alt="" />
+
+			<div class="update-block">
+				<div class="update-date">Update — Jan 26, 2023</div>
+				<p>Large changes to tutorial, save system, and overall progression. No audio in first two tutorial levels yet (planned narration). All subsequent levels have full audio.</p>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/QplpeD9vlpw"></iframe></div>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/Q1p6Bm_rgjc"></iframe></div>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Updates — Feb 2–13, 2023</div>
+				<ul class="styled-list">
+					<li>New enemy unit models — all enemies now visually distinct from friendly units</li>
+					<li>Fixed save system bugs; player only warned of file deletion if a file exists</li>
+					<li>Special ability system fully working with animations</li>
+					<li>Knockback added to giant bear's special ability with low-poly particle effect</li>
+					<li>Added new Syrian Warrior unit with "RALLY" ultimate (heal, max HP boost, double attack speed)</li>
+					<li>Added fairy healer unit that only targets and heals teammates</li>
+					<li>Added archer and enemy bear to the roster</li>
+					<li>Full audio pass: all allied units have sounds including placement sounds</li>
+					<li>Camera shake on bear slam (0.5s)</li>
+					<li>Added spatial audio to all units for immersion</li>
+					<li>Large post-processing improvements</li>
+				</ul>
+				<p>New unit art with point costs for the UI:</p>
+				<div class="img-pair"><img src="images/newarchertxt.png" alt="" /><img src="images/newbeartxt.png" alt="" /></div>
+				<div class="img-pair"><img src="images/nonchangedui.png" alt="" /><img src="images/UIchanges.png" alt="" /></div>
+				<p>Studio logo (I'm a one-man show, so I kept it light):</p>
+				<img class="img-full" src="images/StudioMnewPic.png" alt="Studio logo" />
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Update — Feb 20, 2023</div>
+				<p>First playtest build sent to testers:</p>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/x_5to2St3oA"></iframe></div>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Updates — Feb 22 – Mar 11, 2023</div>
+				<ul class="styled-list">
+					<li>Fixed major UI bug where unit selection disappeared on click-away</li>
+					<li>Camera now properly rotates around table center</li>
+					<li>Added undo button — refunds points and frees board space</li>
+					<li>Added click feedback sounds to all UI elements</li>
+					<li>Full experience and progression system with unit unlock rewards at level 5</li>
+					<li>Relic system added — randomized each playthrough for replayability</li>
+					<li>Hardcore mode added (can be toggled on/off)</li>
+					<li>Full game storyline crafted</li>
+				</ul>
+				<p>Design drafts and final implementations:</p>
+				<div class="img-pair"><img src="images/Unit Unlock popup draft.png" alt="" /><img src="images/Relic Unlock popup draft.png" alt="" /></div>
+				<img class="img-full" src="images/relic brainstorm.png" alt="" />
+				<div class="img-pair"><img src="images/firstPopUpImplemented.png" alt="" /><img src="images/final xp bar.png" alt="" /></div>
+				<div class="img-pair"><img src="images/finalUnitPopup.png" alt="" /><img src="images/finalrelic1.png" alt="" /></div>
+				<div class="img-pair"><img src="images/finalrelic2.png" alt="" /><img src="images/finalrelic3.png" alt="" /></div>
+				<h3 class="section-h3">Full Relic List</h3>
+				<ul class="styled-list">
+					<li>Frenzied Start — half HP, double attack speed</li>
+					<li>Shields Up — 30 damage shield for your units, enemies deal 30% more damage</li>
+					<li>Fortune's Price — random extra unit for you, enemies have 30% more health</li>
+					<li>Extended Reach — all your units gain slightly increased attack range</li>
+					<li>Phantom Army — temporary copies of all units on both sides</li>
+					<li>Chaos Catalyst — all enemy units randomized, you start with 30% extra points</li>
+					<li>Feline Fury — untargetable cats spawn every 5s and nip at your units</li>
+					<li>Blistering Cold — snowstorm damages all your units per second, +30% your attack speed</li>
+					<li>Toxic Empowerment — poison hurts all your units every 2s, but you deal 2x damage</li>
+					<li>Rapid Precision — archer attack speed doubled, enemy rabbits get 4x health</li>
+					<li>Defiant Valor — Swordswoman gains 60% HP, enemy archers deal double damage</li>
+					<li>Vengeful Spirit — bonus damage when unhit on both sides</li>
+					<li>Shadow Gambit — assassins start with half mana, enemy archers have 2x attack speed</li>
+					<li>Soul Siphon — your units lifesteal, enemy units also lifesteal</li>
+					<li>Arrowstorm Alchemy — archers get AOE, enemy slimes can clone themselves</li>
+					<li>Size Might Matter — enemies double in size and triple HP, your units deal 2x damage</li>
+					<li>I Can Do It Better — your units 2x attack speed, enemies get 3x attack speed</li>
+				</ul>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/MB-3bnt6GO0"></iframe></div>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Update — Mar 12–30, 2023</div>
+				<ul class="styled-list">
+					<li>New second campaign section with new map and music</li>
+					<li>Revamped main menu that swaps between maps during camera rotation</li>
+					<li>Enemies now have access to all player units</li>
+					<li>9 relics total in game including Chaos Catalyst</li>
+					<li>Major animation fluidity improvements — no more sliding units</li>
+					<li>Expanding grid levels for bigger battles</li>
+					<li>Major performance optimizations — no frame lag</li>
+					<li>Unit information page added</li>
+				</ul>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/EEZ8gfn9quk"></iframe></div>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Update — Apr 1–12, 2023</div>
+				<ul class="styled-list">
+					<li>Standalone executable released on Itch.io</li>
+					<li>New particles for fighter girl and giant bear abilities</li>
+					<li>Improved UI visibility with background frames and billboards</li>
+					<li>Tooltip system — hover units before placing to see stats</li>
+					<li>Real arrow prefab for archers (no more flying white boxes)</li>
+					<li>Board hazard system added</li>
+					<li>Survival mode with 15 waves</li>
+				</ul>
+				<div class="img-pair"><img src="images/firstTooltip1.png" alt="" /><img src="images/secondTooltip1.png" alt="" /></div>
+				<div class="img-pair"><img src="images/ui tip change.png" alt="" /><img src="images/changed bg on tutorial.jpg" alt="" /></div>
+				<div class="img-pair"><img src="images/characteframe1.jpg" alt="" /><img src="images/characterframe2.jpg" alt="" /></div>
+				<div class="video-label">Explosion particles</div>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/teN_nWfDB-g"></iframe></div>
+				<img class="img-full" src="images/archer action shot.png" alt="Archer action shot" />
+				<div class="img-pair"><img src="images/board hazard tutorial img.png" alt="" /><img src="images/zones causing chaos.jpg" alt="" /></div>
+				<div class="img-pair"><img src="images/another map buff pic.jpg" alt="" /><img src="images/yet another map buff pic describing hint for assassin use.jpg" alt="" /></div>
+				<div class="img-pair"><img src="images/survival img 1.jpg" alt="" /><img src="images/survival img 2.jpg" alt="" /></div>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Update — Nov 7, 2023</div>
+				<ul class="styled-list">
+					<li>Major Enemy AI optimization — 20% performance increase</li>
+					<li>Fixed running animation persisting after all enemies are dead</li>
+					<li>Fixed Chaos Catalyst relic random spawn bugs</li>
+					<li>Fixed unit sliding — all units now properly transition between run/attack/idle animations</li>
+				</ul>
+			</div>
+
+			<div class="update-block">
+				<div class="update-date">Update — Nov 18, 2023</div>
+				<ul class="styled-list">
+					<li>Fixed rare null spawn bug with Chaos Catalyst (roughly 1% chance)</li>
+					<li>Ragdoll mechanics on knockback death — units now fly off the board</li>
+					<li>Damage and heal text popups — yellow for normal, light red for high, dark red for crit, green for healing</li>
+				</ul>
+				<div class="img-pair"><img src="images/knockback ragdoll.jpg" alt="" /><img src="images/knockback ragdoll2.png" alt="" /></div>
+				<div class="video-label">Damage popups demo</div>
+				<div class="video-wrap"><iframe allowfullscreen src="https://www.youtube.com/embed/yfb9DAlZKo4?si=SFKiP0ZCVdfw02uW"></iframe></div>
+			</div>
+
+			<p>Thank you for checking out TableTactics, and for following along with me on this journey. Check out the Itch.io page for more information on the game!</p>
+		</div>
+
+		<div class="cta-row">
+			<a href="https://mnew22.itch.io/table-tactics-demo" target="_blank" class="btn btn-primary">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+				Play on Itch.io
+			</a>
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+	</div>
+
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
+</body>
+</html>
