@@ -382,7 +382,12 @@
 
 		/* ── RESPONSIVE ── */
 		@media (max-width: 768px) {
-			header, .hero, .section-header, .grid-wrapper, footer {
+			header {
+				flex-wrap: wrap;
+				gap: 1rem;
+				padding: 1.25rem 1.5rem;
+			}
+			.hero, .section-header, .grid-wrapper, footer {
 				padding-left: 1.5rem;
 				padding-right: 1.5rem;
 			}
