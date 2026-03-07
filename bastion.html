@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Fateful Fragments — Michael Newman</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+	<style>
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+		:root {
+			--bg:        #0d0d0f;
+			--surface:   #141418;
+			--border:    #1f1f28;
+			--border-h:  #3a3a52;
+			--text:      #e2e0f0;
+			--muted:     #6b6880;
+			--accent:    #7f6af8;
+			--accent2:   #c084fc;
+			--glow:      rgba(127, 106, 248, 0.15);
+		}
+
+		html { scroll-behavior: smooth; }
+
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'Inter', sans-serif;
+			font-size: 15px;
+			line-height: 1.7;
+			overflow-x: hidden;
+		}
+
+		body::before {
+			content: '';
+			position: fixed;
+			inset: 0;
+			background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+			pointer-events: none;
+			z-index: 0;
+			opacity: 0.5;
+		}
+
+		/* ── HEADER ── */
+		header {
+			position: relative;
+			z-index: 10;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 3rem;
+			padding: 2.2rem 3.5rem;
+			border-bottom: 1px solid var(--border);
+		}
+
+		.logo {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: 1.15rem;
+			letter-spacing: -0.01em;
+			color: var(--text);
+			text-decoration: none;
+		}
+
+		.logo span { color: var(--accent); }
+
+		nav { display: flex; align-items: center; gap: 2rem; }
+
+		nav a {
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.78rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			transition: color 0.2s;
+		}
+
+		nav a:hover { color: var(--text); }
+
+		.nav-icons { display: flex; gap: 1rem; }
+
+		.nav-icons a {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			border: 1px solid var(--border);
+			border-radius: 8px;
+			color: var(--muted);
+			text-decoration: none;
+			transition: border-color 0.2s, color 0.2s, background 0.2s;
+			font-size: 0.85rem;
+		}
+
+		.nav-icons a:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+			background: rgba(127,106,248,0.07);
+		}
+
+		/* ── LAYOUT ── */
+		.page {
+			position: relative;
+			z-index: 10;
+			max-width: 860px;
+			margin: 0 auto;
+			padding: 4rem 2rem 6rem;
+		}
+
+		/* ── HERO ── */
+		.project-hero {
+			margin-bottom: 3.5rem;
+			animation: fadeUp 0.5s ease both;
+		}
+
+		.project-eyebrow {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.7rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1rem;
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+		}
+
+		.project-eyebrow::before {
+			content: '';
+			display: block;
+			width: 28px;
+			height: 1px;
+			background: var(--accent);
+		}
+
+		.project-title {
+			font-family: 'Syne', sans-serif;
+			font-weight: 800;
+			font-size: clamp(2.4rem, 5vw, 3.8rem);
+			letter-spacing: -0.03em;
+			line-height: 1.05;
+			color: var(--text);
+			margin-bottom: 1.2rem;
+		}
+
+		.project-tagline {
+			font-size: 1rem;
+			color: var(--muted);
+			max-width: 580px;
+			font-style: italic;
+		}
+
+		.pill-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+			margin-top: 1.5rem;
+		}
+
+		.pill {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.65rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--muted);
+			background: var(--surface);
+			border: 1px solid var(--border);
+			padding: 0.25rem 0.65rem;
+			border-radius: 4px;
+		}
+
+		/* ── HERO IMAGE ── */
+		.hero-image {
+			width: 100%;
+			border-radius: 12px;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			margin-bottom: 3rem;
+			animation: fadeUp 0.5s ease both;
+			animation-delay: 0.1s;
+		}
+
+		.hero-image img {
+			width: 100%;
+			display: block;
+		}
+
+		/* ── VIDEO ── */
+		.video-section {
+			margin-bottom: 3rem;
+			animation: fadeUp 0.5s ease both;
+			animation-delay: 0.15s;
+		}
+
+		.video-label {
+			font-family: 'DM Mono', monospace;
+			font-size: 0.68rem;
+			letter-spacing: 0.15em;
+			text-transform: uppercase;
+			color: var(--muted);
+			margin-bottom: 0.75rem;
+		}
+
+		.video-wrap {
+			position: relative;
+			width: 100%;
+			padding-top: 56.25%;
+			border-radius: 10px;
+			overflow: hidden;
+			border: 1px solid var(--border);
+			background: #000;
+			margin-bottom: 1.5rem;
+		}
+
+		.video-wrap iframe {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			border: none;
+		}
+
+		/* ── DIVIDER ── */
+		.divider {
+			display: flex;
+			align-items: center;
+			gap: 1.2rem;
+			margin: 3rem 0 2rem;
+		}
+
+		.divider h2 {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 0.68rem;
+			letter-spacing: 0.2em;
+			text-transform: uppercase;
+			color: var(--muted);
+			white-space: nowrap;
+		}
+
+		.divider::after {
+			content: '';
+			flex: 1;
+			height: 1px;
+			background: var(--border);
+		}
+
+		/* ── SECTION CONTENT ── */
+		.section-content {
+			animation: fadeUp 0.5s ease both;
+		}
+
+		.section-content p {
+			color: #b8b4cc;
+			margin-bottom: 1rem;
+			font-size: 0.95rem;
+		}
+
+		/* ── SECTION HEADING ── */
+		.section-h3 {
+			font-family: 'Syne', sans-serif;
+			font-weight: 700;
+			font-size: 1.15rem;
+			color: var(--text);
+			margin-bottom: 0.75rem;
+			margin-top: 2rem;
+		}
+
+		/* ── LIST ── */
+		.styled-list {
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			margin-bottom: 1rem;
+		}
+
+		.styled-list li {
+			display: flex;
+			align-items: flex-start;
+			gap: 0.75rem;
+			font-size: 0.9rem;
+			color: #b8b4cc;
+			line-height: 1.6;
+		}
+
+		.styled-list li::before {
+			content: '▸';
+			color: var(--accent);
+			font-size: 0.7rem;
+			margin-top: 0.3rem;
+			flex-shrink: 0;
+		}
+
+		/* ── TWO COL ── */
+		.two-col {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+		}
+
+		@media (max-width: 600px) {
+			.two-col { grid-template-columns: 1fr; }
+		}
+
+		/* ── SCREENSHOTS ── */
+		.screenshot-grid {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1px;
+			background: var(--border);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			overflow: hidden;
+		}
+
+		.screenshot-grid img {
+			width: 100%;
+			display: block;
+			object-fit: cover;
+			aspect-ratio: 16/10;
+			transition: opacity 0.2s;
+		}
+
+		.screenshot-grid img:hover { opacity: 0.85; }
+
+		/* ── CTA ── */
+		.cta-row {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 1rem;
+			margin-top: 3rem;
+			padding-top: 2.5rem;
+			border-top: 1px solid var(--border);
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.7rem 1.4rem;
+			border-radius: 8px;
+			font-family: 'DM Mono', monospace;
+			font-size: 0.75rem;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			text-decoration: none;
+			transition: all 0.2s;
+		}
+
+		.btn-primary {
+			background: var(--accent);
+			color: #fff;
+			border: 1px solid var(--accent);
+		}
+
+		.btn-primary:hover {
+			background: transparent;
+			color: var(--accent);
+		}
+
+		.btn-secondary {
+			background: transparent;
+			color: var(--muted);
+			border: 1px solid var(--border);
+		}
+
+		.btn-secondary:hover {
+			border-color: var(--accent);
+			color: var(--accent);
+		}
+
+		/* ── FOOTER ── */
+		footer {
+			position: relative;
+			z-index: 10;
+			border-top: 1px solid var(--border);
+			padding: 1.5rem 3.5rem;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		footer p {
+			font-size: 0.72rem;
+			color: var(--muted);
+			font-family: 'DM Mono', monospace;
+		}
+
+		/* ── ANIMATION ── */
+		@keyframes fadeUp {
+			from { opacity: 0; transform: translateY(16px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		header { animation: fadeUp 0.5s ease both; }
+
+		@media (max-width: 768px) {
+			header { padding: 1.5rem; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+			.page { padding: 2.5rem 1.25rem 5rem; }
+			.screenshot-grid { grid-template-columns: 1fr; }
+			footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+		}
+
+        /* ── SINGLE FULL-WIDTH IMAGE ── */
+        .img-full {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .img-full img {
+            width: 100%;
+            display: block;
+        }
+
+        /* ── INLINE IMAGES inside section-content ── */
+        .section-content img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin: 1.25rem 0;
+        }
+	</style>
+</head>
+<body>
+
+	<!-- Header -->
+	<header>
+		<a href="index.html" class="logo">Michael<span>.</span>Newman</a>
+		<nav>
+			<a href="index.html">← All Projects</a>
+			<a href="generic.html">Contact</a>
+			<div class="nav-icons">
+				<a href="https://www.linkedin.com/in/newman-michael/" target="_blank" title="LinkedIn">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+				</a>
+				<a href="https://github.com/michaelsn22" target="_blank" title="GitHub">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+				</a>
+			</div>
+		</nav>
+	</header>
+
+	<div class="page">
+
+		<!-- Project Hero -->
+		<div class="project-hero">
+			<div class="project-eyebrow">Bastion Heart · Unity · Tower Defence · System Design</div>
+			<h1 class="project-title">Bastion Heart</h1>
+			<p class="project-tagline">An overview of my systems heavy tower defence game I am designing.</p>
+			<div class="pill-row">
+				<span class="pill">Unity</span>
+				<span class="pill">C#</span>
+				<span class="pill">Player Progression Systems</span>
+                <span class="pill">Dialogue Systems</span>
+                <span class="pill">Cloud</span>
+			</div>
+		</div>
+
+		<!-- Hero Image -->
+		<div class="img-full">
+			<img src="images/MapTeaser5.png" alt="" />
+		</div>
+
+		<!-- Concept -->
+		<div class="divider"><h2>Concept &amp; Inspiration</h2></div>
+		<div class="section-content">
+			<p>Having a smaller scope in mind after a major project like Fateful Fragments, I set my sites on a product targeted toward a niche audience. A tower defence game with heavy gameplay systems, inspired by the widely popular game Arknights.</p>
+		</div>
+
+		<!-- Team -->
+		<div class="divider"><h2>Team</h2></div>
+		<div class="section-content">
+			<p>I would be the sole designer and programmer for this game. I would contract the following roles out:</p>
+			<ul class="styled-list">
+				<li>Narrative Designer</li>
+				<li>Composer &amp; Sound Designer</li>
+				<li>2D Spine Animator</li>
+				<li>2D Character Designer</li>
+				<li>2D Chibi Character Designer</li>
+				<li>2D Illustration Artist</li>
+			</ul>
+		</div>
+
+		<!-- Goals + Challenges -->
+		<div class="divider"><h2>Design Goals &amp; Challenges</h2></div>
+		<div class="section-content">
+			<div class="two-col">
+				<div>
+					<h3 class="section-h3">Goals</h3>
+					<ul class="styled-list">
+						<li>Simple but strong core gameplay loop to maintain player flow state</li>
+						<li>Tower defence mechanics with some systems layered on top</li>
+						<li>Skill Trees with branching paths for player expression</li>
+						<li>Player progression systems such as experience, unit levels, and equipment</li>
+                        <li>Robust cloud saving to prevent basic file cheating</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="section-h3">Challenges</h3>
+					<ul class="styled-list">
+						<li>Skill Tree's that feel impactful but maintain balance</li>
+                        <li>Player progression systems such as experience, unit levels, and equipment</li>
+						<li>Unique unit identity</li>
+						<li>Writing realistic dialogue for the companion system</li>
+						<li>Improving tutorial accessibility without breaking immersion</li>
+						<li>Maintaining a cohesive art style across all assets</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Tools -->
+		<div class="divider"><h2>Tools &amp; Technologies</h2></div>
+		<div class="section-content">
+			<ul class="styled-list">
+				<li>Unity Game Engine</li>
+                <li>Unity Cloud Save &amp Analytics</li>
+				<li>C#</li>
+				<li>Spine 2D</li>
+				<li>DOTween Framework</li>
+			</ul>
+		</div>
+
+        <!-- Concept -->
+		<div class="divider"><h2>Systems Design - Skill Trees</h2></div>
+		<div class="section-content">
+			<p>I wanted to pursue some sort of skill tree system and equipment system that allowed for player expression. <br><br></p>
+            <p>I begun by using a simple DAG (Directed Acyclic Graph) design. This was super easy to program as basically every node just needed to check if its parent was leveled to allow it to be levelable as well. And of course there was only 1 root node, so it had no parents. <br><br>Each unit
+                would have three paths to go down. Typically choosing attack, attack speed, or utility such as health and damage reduction. The middle of the tree would contain a special passive always active, and the bottom node would of course be an ultimate change node.
+            </p>
+            <img src="images/SkillTreeDetailsTeaser1.png" alt=""/>
+            <p>I also added a light-weight tooltip system for ease of viewing.</p>
+            <img src="images/oldTalentTreeScreenshot.png" alt="" />
+            <p>I had great feedback on this system; However I felt that the three paths felt boring and there wasn't much innovation I could do to make each individual node feel impactful. So I decided to take a look at what a more popular game did.</p>
+            <img src="images/ElderScrollsSkillTreePic.png" alt="" />
+            <p>Elder Scrolls incorported images, and graphs with multiple paths in them. I wanted something visually appealing and that TRUELY allowed player choice. Not a one directional psuedo choice.</p>
+            <p>Here's what I ended up creating:</p>
+            <img src="images/UnitUITeaser5.png" alt="" />
+            <img src="images/UnitUITeaser2.png" alt="" />
+            <img src="images/UnitUITeaser3.png" alt="" />
+            <p>This new style allowed a wider variety of builds and felt more unit-specific. Just what I wanted.</p>
+            <p></p>
+
+            <div class="divider"><h2>Systems Design - Equipment System</h2></div>
+            <p>This system was a lot easier to work with. I really just needed a front-end display that made sense to players paired with the simple application of stats visually in UI and "physically" inside of the game.</p>
+            <p>Each unit would have three slots, which really were just integer arrays on the backend. Easy to track, alter, and very scalable. I then would divide items into each category and make serializable objects for them.</p>
+            <img src="images/UnitUITeaser6.png" alt="" />
+            <p>I added a popout when players clicked on a UI equipment slot as seen here. It's a simple scrollview UI populated with items from that given category at runtime. Hovering over any specific item also shows stats in the bottom panel for ONLY that item until exiting that hover. All item stat changes are displayed on that bottom panel.</p>
+            <img src="images/EquipmentUITeaser.png" alt="" />
+            <p>Lastly, I present this information in a digestible manner on the final total stat panel on the left side of my unit UI. You can see base stats of a unit, and stat gains from skill trees are in blue, along with stat gains from items in green.</p>
+            <img src="images/UnitUILeftPanel.png" alt="" />
+            <p>Player feedback has been great! Players understand what items and skill are doing to their units stats in an easily understood format.</p>
+		</div>
+
+		<!-- Screenshots -->
+		<div class="divider"><h2>Screenshots</h2></div>
+
+        <div class="img-full">
+			<img src="images/MapTeaser1.png" alt="" />
+			<img src="images/MapTeaser2.png" alt="" />
+			<img src="images/MapTeaser3.png" alt="" />
+			<img src="images/MapTeaser4.png" alt="" />
+            <img src="images/RandomUiTeaser3.png" alt="" />
+            <img src="images/MainMenuTeaser.png" alt="" />
+		</div>
+
+		<div class="screenshot-grid">
+            <img src="images/DialogueTeaser1.png" alt="" />
+            <img src="images/DialogueTeaser3.png" alt="" />
+            <img src="images/DialogueTeaser4.png" alt="" />
+            <img src="images/DialogueTeaser5.png" alt="" />
+		</div>
+        <div class="section-content" />
+        <p><br>Thanks for checking out some of my systems design and Bastion Hearts!</p>
+        </div>
+
+		<!-- CTA -->
+		<div class="cta-row">
+			<a href="index.html" class="btn btn-secondary">← Back to Portfolio</a>
+		</div>
+
+	</div>
+
+	<!-- Footer -->
+	<footer>
+		<p>&copy; Michael Newman</p>
+		<p>Software Developer &amp; Gameplay Programmer</p>
+	</footer>
+
+</body>
+</html>
