@@ -454,7 +454,7 @@
 		<div class="project-hero">
 			<div class="project-eyebrow">Bastion Heart · Unity · Tower Defence · System Design</div>
 			<h1 class="project-title">Bastion Heart</h1>
-			<p class="project-tagline">An overview of my systems heavy tower defence game I am designing.</p>
+			<p class="project-tagline">An overview of my systems heavy tower defence game!</p>
 			<div class="pill-row">
 				<span class="pill">Unity</span>
 				<span class="pill">C#</span>
@@ -466,14 +466,14 @@
 
 		<!-- Hero Image -->
 		<div class="img-full">
-			<img src="images/MapTeaser5.png" alt="" />
+			<img src="images/Main Menu Screenshot.png" alt="" />
 		</div>
 
 		<!-- Videos -->
 		<div class="video-section">
-			<div class="video-label">Full Demo Playthrough</div>
+			<div class="video-label">Full Demo Trailer/div>
 			<div class="video-wrap">
-				<iframe allowfullscreen src="https://www.youtube.com/embed/Thhh1LKIKZc?si=NAKnJmeNfqfNHAqp"></iframe>
+				<iframe allowfullscreen src="https://www.youtube.com/embed/qdLohP2iwmw?si=5iTe3cQ3afQ-uVU7"></iframe>
 			</div>
 		</div>
 
@@ -494,6 +494,7 @@
 				<li>2D Character Designer</li>
 				<li>2D Chibi Character Designer</li>
 				<li>2D Illustration Artist</li>
+				<li>UI/UX Designer</li>
 			</ul>
 		</div>
 
@@ -545,46 +546,50 @@
                 would have three paths to go down. Typically choosing attack, attack speed, or utility such as health and damage reduction. The middle of the tree would contain a special passive always active, and the bottom node would of course be an ultimate change node.
             </p>
             <img src="images/SkillTreeDetailsTeaser1.png" alt=""/>
-            <p>I also added a light-weight tooltip system for ease of viewing.</p>
-            <img src="images/oldTalentTreeScreenshot.png" alt="" />
             <p>I had great feedback on this system; However I felt that the three paths felt boring and there wasn't much innovation I could do to make each individual node feel impactful. So I decided to take a look at what a more popular game did.</p>
             <img src="images/ElderScrollsSkillTreePic.png" alt="" />
             <p>Elder Scrolls incorported images, and graphs with multiple paths in them. I wanted something visually appealing and that TRUELY allowed player choice. Not a one directional psuedo choice.</p>
             <p>Here's what I ended up creating:</p>
-            <img src="images/UnitUITeaser5.png" alt="" />
-            <img src="images/UnitUITeaser2.png" alt="" />
-            <img src="images/UnitUITeaser3.png" alt="" />
+            <img src="images/YukiTree.png" alt="" />
+            <img src="images/LunaTree.png" alt="" />
+            <img src="images/ElariaTree.png" alt="" />
             <p>This new style allowed a wider variety of builds and felt more unit-specific. Just what I wanted.</p>
             <p></p>
+			<p>Upon investing enough points in a unit, you are also prompted with a choice to upgrade your passive or ultimate abilities. Check these out:</p>
+			<img src="images/ValessiaChoice.png" alt="" />
+			<img src="images/ragnarchoice.png" alt="" />
 
             <div class="divider"><h2>Systems Design - Equipment System</h2></div>
             <p>This system was a lot easier to work with. I really just needed a front-end display that made sense to players paired with the simple application of stats visually in UI and "physically" inside of the game.</p>
-            <p>Each unit would have three slots, which really were just integer arrays on the backend. Easy to track, alter, and very scalable. I then would divide items into each category and make serializable objects for them.</p>
-            <img src="images/UnitUITeaser6.png" alt="" />
-            <p>I added a popout when players clicked on a UI equipment slot as seen here. It's a simple scrollview UI populated with items from that given category at runtime. Hovering over any specific item also shows stats in the bottom panel for ONLY that item until exiting that hover. All item stat changes are displayed on that bottom panel.</p>
-            <img src="images/EquipmentUITeaser.png" alt="" />
-            <p>Lastly, I present this information in a digestible manner on the final total stat panel on the left side of my unit UI. You can see base stats of a unit, and stat gains from skill trees are in blue, along with stat gains from items in green.</p>
-            <img src="images/UnitUILeftPanel.png" alt="" />
+            <p>Each unit would have six slots, which really were just integer arrays on the backend. Easy to track, alter, and very scalable. I then would divide items into each category and make serializable objects for them.</p>
+            <img src="images/equipExampleStatRows.png" alt="" />
+            <p>I added a popout when players clicked on a UI equipment slot as seen here. It's a simple scrollview UI populated with items from that given category at runtime. Hovering over any specific item also shows stats in the side panel for ONLY that item until exiting that hover. All cumulative item stat changes are displayed on that side panel.</p>
+            <img src="images/equipPopupEx.png" alt="" />
+            <p>Lastly, I present this information in a digestible manner on the final total stat panel on the left side of my unit UI. You can see base stats of a unit, see stat gains from items or skills via mouse hover tooltip popups.</p>
+            <img src="images/equipExampleStatRowsTooltip2.png" alt="" />
             <p>Player feedback has been great! Players understand what items and skill are doing to their units stats in an easily understood format.</p>
+			<p>Here's a quick peek at the shop since we're talking equipment:</p>
+			<img src="images/shopPic.png" alt="" />
 		</div>
 
 		<!-- Screenshots -->
 		<div class="divider"><h2>Screenshots</h2></div>
 
         <div class="img-full">
-			<img src="images/MapTeaser1.png" alt="" />
-			<img src="images/MapTeaser2.png" alt="" />
-			<img src="images/MapTeaser3.png" alt="" />
-			<img src="images/MapTeaser4.png" alt="" />
-            <img src="images/RandomUiTeaser3.png" alt="" />
-            <img src="images/MainMenuTeaser.png" alt="" />
+			<img src="images/Teaser1.png" alt="" />
+			<img src="images/Teaser10.png" alt="" />
+			<img src="images/StageSelectTeaser.jfif" alt="" />
+			<img src="images/Teaser14.png" alt="" />
+            <img src="images/Teaser15.png" alt="" />
+			<img src="images/Main Menu Screenshot.png" alt="" />
+            <img src="images/Teaser19.png" alt="" />
 		</div>
 
 		<div class="screenshot-grid">
-            <img src="images/DialogueTeaser1.png" alt="" />
-            <img src="images/DialogueTeaser3.png" alt="" />
-            <img src="images/DialogueTeaser4.png" alt="" />
-            <img src="images/DialogueTeaser5.png" alt="" />
+            <img src="images/Scene16Teaser.png" alt="" />
+            <img src="images/Scene17Teaser.png" alt="" />
+            <img src="images/Scene26Teaser.png" alt="" />
+            <img src="images/Scene7Teaser.png" alt="" />
 		</div>
         <div class="section-content" />
         <p><br>Thanks for checking out some of my systems design and Bastion Hearts!</p>
